@@ -68,6 +68,10 @@ interface IReportProperties
     String METRICS          = "metrics"; // comma-separated list of (column name:metric) pairs
     char MSEPARATOR         = ':';
 
+    // addition parameters by terry
+    String OUTPUT_ENCODING = "html.outputEncoding";
+    String SOURCE_ENCODING = "html.sourceEncoding";
+
     // defaults:
     
     String DEFAULT_UNITS_TYPE = INSTR_UNITS;

@@ -8,14 +8,7 @@
  */
 package com.vladium.emma.report.html;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.text.FieldPosition;
 import java.text.NumberFormat;
@@ -148,7 +141,7 @@ final class ReportGenerator extends AbstractReportGenerator
             
             m_log.info ("writing [" + getType () + "] report to [" + fullOutFile.getAbsolutePath () + "] ...");
             
-            out = openOutFile (fullOutFile, m_settings.getOutEncoding (), true);
+            out = openOutFile (fullOutFile, m_settings.getOutputEncoding(), true);
             
             final int [] columns = m_settings.getColumnOrder ();
             final StringBuffer buf = new StringBuffer ();
@@ -326,7 +319,7 @@ final class ReportGenerator extends AbstractReportGenerator
             
             final File outFile = getItemFile (NESTED_ITEMS_PARENT_DIR, m_reportIDNamespace.getID (getItemKey (item)));
             
-            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutEncoding (), true);
+            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutputEncoding (), true);
             
             final int [] columns = m_settings.getColumnOrder ();            
             final StringBuffer buf = new StringBuffer ();
@@ -442,86 +435,86 @@ final class ReportGenerator extends AbstractReportGenerator
         try
         {
             final File outFile = getItemFile (NESTED_ITEMS_PARENT_DIR, m_reportIDNamespace.getID (getItemKey (item)));
-            
-            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutEncoding (), true);
-            
-            final int [] columns = m_settings.getColumnOrder ();            
+
+            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutputEncoding (), true);
+
+            final int [] columns = m_settings.getColumnOrder ();
             final StringBuffer buf = new StringBuffer ();
-            
+
             // TODO: set title [from a prop?]
             final HTMLDocument page = createPage (REPORT_HEADER_TITLE);
             {
                 final IItem [] path = getParentPath (item);
-                
+
                 addPageHeader (page, item, path);
                 addPageFooter (page, item, path);
             }
-            
+
             // summary table:
-            
+
             {
                 final IElement itemname = IElement.Factory.create (Tag.SPAN);
                 itemname.setText (item.getName (), true);
                 itemname.setClass (CSS_ITEM_NAME);
-                
+
                 final IElementList title = new ElementList ();
                 title.add (new Text ("COVERAGE SUMMARY FOR SOURCE FILE [", true));
                 title.add (itemname);
                 title.add (new Text ("]", true));
-                
+
                 page.addH (1, title, null);
             }
-            
+
             final HTMLTable summaryTable = new HTMLTable ("100%", null, null, "0");
             {
                 // header row:
                 final HTMLTable.IRow header = summaryTable.newTitleRow ();
                 // coverage row:
                 final HTMLTable.IRow coverage = summaryTable.newRow ();
-                
+
                 for (int c = 0; c < columns.length; ++ c)
                 {
                     final int attrID = columns [c];
                     final IItemAttribute attr = item.getAttribute (attrID, m_settings.getUnitsType ());
-                    
+
                     final HTMLTable.ICell headercell = header.newCell ();
                     headercell.setText (attr.getName (), true);
-                    
+
                     if (attr != null)
                     {
                         boolean fail = (m_metrics [attrID] > 0) && ! attr.passes (item, m_metrics [attrID]);
-                        
+
                         buf.setLength (0);
                         attr.format (item, buf);
-                        
-                        final HTMLTable.ICell cell = coverage.newCell (); 
+
+                        final HTMLTable.ICell cell = coverage.newCell ();
                         cell.setText (buf.toString (), true);
                         if (fail) cell.setClass (CSS_DATA_HIGHLIGHT);
                     }
                 }
             }
-            page.add (summaryTable);    
-            
+            page.add (summaryTable);
+
             final boolean deeper = (m_settings.getDepth () > ClassItem.getTypeMetadata ().getTypeID ());
             final boolean embedSrcFile = deeper && srcFileAvailable (item, m_cache);
             final boolean createAnchors = embedSrcFile && m_hasLineNumberInfo;
-            
+
             final IDGenerator pageIDNamespace = createAnchors ? new IDGenerator () : null;
-            
+
             // child summary table is special for srcfile items:
-            
+
             page.addH (2, "COVERAGE BREAKDOWN BY CLASS AND METHOD", null);
 
             final IntObjectMap lineAnchorIDMap = embedSrcFile ? new IntObjectMap () : null;
             final HTMLTable childSummaryTable = new HTMLTable ("100%", null, null, "0");
-            
+
             childSummaryTable.setClass (CSS_CLS_NOLEFT);
-            
+
             {
                 int [] headerColumns = null;
 
                 final ItemComparator order = m_typeSortComparators [ClassItem.getTypeMetadata ().getTypeID ()];
-                int clsIndex = 0;                
+                int clsIndex = 0;
                 for (Iterator classes = item.getChildren (order); classes.hasNext (); ++ clsIndex)
                 {
                     final ClassItem cls = (ClassItem) classes.next ();
@@ -529,11 +522,11 @@ final class ReportGenerator extends AbstractReportGenerator
                     if (headerColumns == null)
                     {
                         // header row:
-                        headerColumns = addHeaderRow (cls, childSummaryTable, columns);                        
+                        headerColumns = addHeaderRow (cls, childSummaryTable, columns);
                     }
-                    
+
                     String HREFname = null;
-                    
+
                     // special class subheader:
                     if (createAnchors)
                     {
@@ -542,28 +535,28 @@ final class ReportGenerator extends AbstractReportGenerator
                             $assert.ASSERT (lineAnchorIDMap != null);
                             $assert.ASSERT (pageIDNamespace != null);
                         }
-                        
+
                         final String childKey = getItemKey (cls);
-                        
+
                         HREFname = addLineAnchorID (cls.getFirstLine (), pageIDNamespace.getID (childKey), lineAnchorIDMap);
                     }
 
                     addClassRow (cls, clsIndex, childSummaryTable, headerColumns, HREFname, createAnchors);
-                    
+
 //                    // row to separate this class's methods:
 //                    final HTMLTable.IRow subheader = childSummaryTable.newTitleRow ();
 //                    final HTMLTable.ICell cell = subheader.newCell ();
 //                    // TODO: cell.setColspan (???)
 //                    cell.setText ("class " + child.getName () + " methods:", true);
-                    
+
                     boolean odd = false;
-                    final ItemComparator order2 = m_typeSortComparators [MethodItem.getTypeMetadata ().getTypeID ()];                
+                    final ItemComparator order2 = m_typeSortComparators [MethodItem.getTypeMetadata ().getTypeID ()];
                     for (Iterator methods = cls.getChildren (order2); methods.hasNext (); odd = ! odd)
                     {
                         final MethodItem method = (MethodItem) methods.next ();
-                        
+
                         HREFname = null;
-                        
+
                         if (createAnchors)
                         {
                             if ($assert.ENABLED)
@@ -571,9 +564,9 @@ final class ReportGenerator extends AbstractReportGenerator
                                 $assert.ASSERT (lineAnchorIDMap != null);
                                 $assert.ASSERT (pageIDNamespace != null);
                             }
-                            
+
                             final String child2Key = getItemKey (method);
-                            
+
                             HREFname = addLineAnchorID (method.getFirstLine (), pageIDNamespace.getID (child2Key), lineAnchorIDMap);
                         }
 
@@ -582,10 +575,10 @@ final class ReportGenerator extends AbstractReportGenerator
                 }
             }
             page.add (childSummaryTable);
-            
-            
+
+
             // embed source file:
-             
+
             if (deeper)
             {
                 //page.addHR (1);
@@ -595,9 +588,9 @@ final class ReportGenerator extends AbstractReportGenerator
                 }
                 //page.addHR (1);
             }
-                
-            
-            page.emit (out);            
+
+
+            page.emit (out);
             out.flush ();
         }
         finally
@@ -619,7 +612,7 @@ final class ReportGenerator extends AbstractReportGenerator
             final File outFile = getItemFile (NESTED_ITEMS_PARENT_DIR, m_reportIDNamespace.getID (getItemKey (item)));
             
             // TODO: deal with overwrites
-            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutEncoding (), true);
+            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutputEncoding (), true);
             
             final int [] columns = m_settings.getColumnOrder ();            
             final StringBuffer buf = new StringBuffer ();
@@ -763,7 +756,7 @@ final class ReportGenerator extends AbstractReportGenerator
     
     private HTMLDocument createPage (final String title)
     {
-        final HTMLDocument page = new HTMLDocument (title, m_settings.getOutEncoding ());
+        final HTMLDocument page = new HTMLDocument (title, m_settings.getOutputEncoding ());
         page.addStyle (CSS); // TODO: split by visit type
         
         return page;
@@ -1142,8 +1135,8 @@ final class ReportGenerator extends AbstractReportGenerator
                 BufferedReader in = null;
                 try
                 {
-                    in = new BufferedReader (new FileReader (srcFile), IO_BUF_SIZE);
-                    
+                    in = new BufferedReader (new InputStreamReader (new FileInputStream(srcFile), m_settings.getSourceEncoding ()), IO_BUF_SIZE);
+
                     final boolean markupCoverage = m_hasLineNumberInfo;
                     
                     final int unitsType = m_settings.getUnitsType ();
