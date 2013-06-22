@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.CodeSigner;
 import java.security.CodeSource;
 import java.util.Map;
 
@@ -343,7 +344,7 @@ final class InstrClassLoader extends URLClassLoader
         // support ProtectionDomains with non-null class source URLs:
         // [however, disable anything related to sealing or signing]
         
-        final CodeSource csrc = new CodeSource (srcURL, (java.security.CodeSigner[])null);
+        final CodeSource csrc = new CodeSource (srcURL, (CodeSigner[])null);
         
         // allow getPackage() to return non-null on the class we are about to
         // define (however, don't bother emulating the original manifest info since
