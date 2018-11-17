@@ -84,7 +84,10 @@ abstract class Processor
         {
             Logger.push (log);
             m_log = log;
-        
+            if (log.atVERBOSE ())
+            {
+                log.verbose("Process _run: " + this.getClass().getName());
+            }
             _run (toolProperties);
         }
         finally
