@@ -1593,7 +1593,7 @@ final class ReportGenerator extends AbstractReportGenerator
         
         "";
 
-    private static final String NESTED_ITEMS_PARENT_DIRNAME = "_files";
+    private static final String NESTED_ITEMS_PARENT_DIRNAME = "files";
     private static final File NESTED_ITEMS_PARENT_DIR = new File (NESTED_ITEMS_PARENT_DIRNAME);
     private static final int [][] NESTING; // set in <clinit>; this reflects the dir structure for the report
     
