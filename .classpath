@@ -6,8 +6,9 @@
 	<classpathentry kind="src" path="ant/ant14"/>
 	<classpathentry kind="src" path="ant/ant15"/>
 	<classpathentry kind="src" path="core/data"/>
-	<classpathentry output="bin/tools" kind="src" path="tools/java"/>
+	<classpathentry kind="src" output="bin/tools" path="tools/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="var" path="ANT_15"/>
+	<classpathentry kind="lib" path="/Users/dkrinke/Desktop/ant-1.5.jar"/>
 	<classpathentry kind="output" path="bin/core"/>
 </classpath>

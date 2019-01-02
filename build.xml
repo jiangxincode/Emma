@@ -111,7 +111,6 @@
 
     <property name="build.target.ant.15.home" value="${env.ANT_HOME}" />
     <property name="build.target.ant.14.home" value="${build.target.ant.15.home}" />
-
     
     <!-- verify that we have J2SE 1.4+: -->
     <available property="j2se.is.14+" classname="java.lang.CharSequence" />

@@ -34,5 +34,9 @@ interface ICONSTANTVisitor
     Object visit (CONSTANT_Utf8_info constant, Object ctx);
     Object visit (CONSTANT_NameAndType_info constant, Object ctx);
 
+	Object visit(CONSTANT_MethodHandle_info constant, Object ctx);
+	Object visit(CONSTANT_InvokeDynamic_info constant, Object ctx);
+	Object visit(CONSTANT_Empty_info constant, Object ctx);
+
 } // end of interface
 // ----------------------------------------------------------------------------
