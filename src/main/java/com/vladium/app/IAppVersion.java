@@ -27,7 +27,7 @@ interface IAppVersion
     String APP_BUILD_RELEASE_TAG = /* @APP_BUILD_RELEASE_TAG@ */ "fixed";
     String APP_BUILD_DATE = /* @APP_BUILD_DATE@ */ "2013-06-22";
 
-    String APP_BUG_REPORT_LINK = /* @APP_BUG_REPORT_LINK@ */ "https://github.com/zjumty/Emma";
+    String APP_BUG_REPORT_LINK = /* @APP_BUG_REPORT_LINK@ */ "https://github.com/jiangxincode/Emma";
     String APP_HOME_SITE_LINK = /* @APP_HOME_SITE_LINK@ */   "http://emma.sourceforge.net/index.htmls";
 
     // derived properties [must be compile-time consts]:
