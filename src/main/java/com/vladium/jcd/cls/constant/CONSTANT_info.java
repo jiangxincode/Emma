@@ -100,6 +100,17 @@ abstract class CONSTANT_info implements Cloneable, IClassFormatOutput
         case CONSTANT_NameAndType_info.TAG:
             return new CONSTANT_NameAndType_info (bytes);
             
+            
+        case CONSTANT_MethodHandle_info.TAG:
+            return new CONSTANT_MethodHandle_info (bytes);
+        	
+        case CONSTANT_InvokeDynamic_info.TAG:
+            return new CONSTANT_InvokeDynamic_info (bytes);
+            
+        case CONSTANT_Empty_info.TAG:
+        	return new CONSTANT_Empty_info (bytes);
+
+            
         default: throw new IllegalStateException ("CONSTANT_info: invalid tag value [" + tag + ']');
                  
         } // end of switch
@@ -165,11 +176,20 @@ abstract class CONSTANT_info implements Cloneable, IClassFormatOutput
             
         case CONSTANT_InterfaceMethodref_info.TAG:
             return "CONSTANT_InterfaceMethodref";
-            
-            
+        	
         case CONSTANT_NameAndType_info.TAG:
             return "CONSTANT_NameAndType";
             
+
+        case CONSTANT_MethodHandle_info.TAG:
+        	return "CONSTANT_MethodHandle";
+        
+        case CONSTANT_InvokeDynamic_info.TAG:
+        	return "CONSTANT_InvokeDynamic";
+                        
+        case CONSTANT_Empty_info.TAG:
+        	return "CONSTANT_Empty";
+        	
         default: throw new IllegalStateException ("CONSTANT_info: invalid tag value [" + constant.tag () + ']');
                  
         } // end of switch
@@ -189,6 +209,9 @@ abstract class CONSTANT_info implements Cloneable, IClassFormatOutput
     protected static final byte CONSTANT_Methodref                  = 10;
     protected static final byte CONSTANT_InterfaceMethodref         = 11;
     protected static final byte CONSTANT_NameAndType                = 12;
+    protected static final byte CONSTANT_MethodHandle               = 15;
+    protected static final byte CONSTANT_InvokeDynamic              = 18;
+
     */
     
     protected CONSTANT_info ()
