@@ -38,6 +38,30 @@ abstract class ReportProperties implements IAppErrorCodes
        
     public static final class ParsedProperties
     {
+        public void setInEncoding (final String inEncoding)
+        {
+            if ($assert.ENABLED) $assert.ASSERT (inEncoding != null, "null input: inEncoding");
+            
+            m_inEncoding = inEncoding;
+        }
+
+        public String getInEncoding ()
+        {
+            return m_inEncoding;
+        }
+        
+        public void setOutEncoding (final String outEncoding)
+        {
+            if ($assert.ENABLED) $assert.ASSERT (outEncoding != null, "null input: outEncoding");
+            
+            m_outEncoding = outEncoding;
+        }
+
+        public String getOutEncoding ()
+        {
+            return m_outEncoding;
+        }
+        
         public void setOutDir (final File outDir)
         {
             if ($assert.ENABLED) $assert.ASSERT (outDir != null, "null input: outDir");
@@ -155,12 +179,10 @@ abstract class ReportProperties implements IAppErrorCodes
                 $assert.ASSERT (m_columnOrder != null, "m_columnOrder not set");
                 $assert.ASSERT (m_sortOrder != null, "m_sortOrder not set");
                 $assert.ASSERT (m_metrics != null, "m_metrics not set");
-                $assert.ASSERT (m_sourceEncoding != null, "m_sourceEncoding not set");
-                $assert.ASSERT (m_outputEncoding != null, "m_outputEncoding not set");
             }
         }
 
-
+        private String m_inEncoding;
         private String m_outEncoding;
         private File m_outDir;
         private File m_outFile;
@@ -176,28 +198,6 @@ abstract class ReportProperties implements IAppErrorCodes
         private int [] m_columnOrder; // attribute IDs [order indicates column order] 
         private int [] m_sortOrder; // if m_sortOrder[i+1]>0 , sort m_columnOrder[m_sortOrder[i]] in ascending order
         private IntIntMap m_metrics; // pass criteria (column attribute ID -> metric)
-
-        // addition parameters by terry
-        private String m_outputEncoding;
-        private String m_sourceEncoding;
-
-        public String getSourceEncoding() {
-            return m_sourceEncoding;
-        }
-
-        public void setSourceEncoding(String sourceEncoding) {
-            if ($assert.ENABLED) $assert.ASSERT (sourceEncoding != null, "null input: sourceEncoding");
-            this.m_sourceEncoding = sourceEncoding;
-        }
-
-        public String getOutputEncoding() {
-            return m_outputEncoding;
-        }
-
-        public void setOutputEncoding(String outputEncoding) {
-            if ($assert.ENABLED) $assert.ASSERT (outputEncoding != null, "null input: outputEncoding");
-            this.m_outputEncoding = outputEncoding;
-        }
     } // end of nested class
     
     
@@ -256,8 +256,8 @@ abstract class ReportProperties implements IAppErrorCodes
         
         final ParsedProperties result = new ParsedProperties ();
         {
-            result.setOutputEncoding(getReportProperty (properties, type, IReportProperties.OUTPUT_ENCODING, false, false));
-            result.setSourceEncoding(getReportProperty (properties, type, IReportProperties.SOURCE_ENCODING, false, false));
+            result.setOutEncoding(getReportProperty (properties, type, IReportProperties.OUT_ENCODING, false, false));
+            result.setInEncoding(getReportProperty (properties, type, IReportProperties.IN_ENCODING, false, false));
         }
         
         // TODO: outDirName is no longer supported

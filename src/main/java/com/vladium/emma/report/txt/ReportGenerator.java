@@ -113,7 +113,7 @@ final class ReportGenerator extends AbstractReportGenerator
         
         m_log.info ("writing [" + getType () + "] report to [" + fullOutFile.getAbsolutePath () + "] ...");
         
-        openOutFile (fullOutFile, m_settings.getOutputEncoding (), true);
+        openOutFile (fullOutFile, m_settings.getOutEncoding (), true);
         
         // build ID stamp:
         try

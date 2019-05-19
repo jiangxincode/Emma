@@ -106,10 +106,10 @@ final class ReportGenerator extends AbstractReportGenerator
             
             m_log.info ("writing [" + getType () + "] report to [" + fullOutFile.getAbsolutePath () + "] ...");
             
-            openOutFile (fullOutFile, m_settings.getOutputEncoding (), true);
+            openOutFile (fullOutFile, m_settings.getOutEncoding (), true);
             
             // XML header:
-            m_out.write ("<?xml version=\"1.0\" encoding=\"" + m_settings.getOutputEncoding () + "\"?>");
+            m_out.write ("<?xml version=\"1.0\" encoding=\"" + m_settings.getOutEncoding () + "\"?>");
             
             // build ID stamp:
             try

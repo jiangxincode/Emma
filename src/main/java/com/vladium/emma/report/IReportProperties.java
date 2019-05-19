@@ -22,6 +22,9 @@ interface IReportProperties
     String PREFIX = "report.";
     
     // parameter:
+    String IN_ENCODING = "in.encoding";
+    
+    // parameter:
     String OUT_ENCODING     = "out.encoding";
     String OUT_DIR          = "out.dir";
     String OUT_FILE         = "out.file";
@@ -67,10 +70,6 @@ interface IReportProperties
     // parameter:
     String METRICS          = "metrics"; // comma-separated list of (column name:metric) pairs
     char MSEPARATOR         = ':';
-
-    // addition parameters by terry
-    String OUTPUT_ENCODING = "html.outputEncoding";
-    String SOURCE_ENCODING = "html.sourceEncoding";
 
     // defaults:
     

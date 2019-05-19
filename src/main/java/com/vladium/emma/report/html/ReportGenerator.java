@@ -141,7 +141,7 @@ final class ReportGenerator extends AbstractReportGenerator
             
             m_log.info ("writing [" + getType () + "] report to [" + fullOutFile.getAbsolutePath () + "] ...");
             
-            out = openOutFile (fullOutFile, m_settings.getOutputEncoding(), true);
+            out = openOutFile (fullOutFile, m_settings.getOutEncoding(), true);
             
             final int [] columns = m_settings.getColumnOrder ();
             final StringBuffer buf = new StringBuffer ();
@@ -319,7 +319,7 @@ final class ReportGenerator extends AbstractReportGenerator
             
             final File outFile = getItemFile (NESTED_ITEMS_PARENT_DIR, m_reportIDNamespace.getID (getItemKey (item)));
             
-            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutputEncoding (), true);
+            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutEncoding (), true);
             
             final int [] columns = m_settings.getColumnOrder ();            
             final StringBuffer buf = new StringBuffer ();
@@ -436,7 +436,7 @@ final class ReportGenerator extends AbstractReportGenerator
         {
             final File outFile = getItemFile (NESTED_ITEMS_PARENT_DIR, m_reportIDNamespace.getID (getItemKey (item)));
 
-            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutputEncoding (), true);
+            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutEncoding (), true);
 
             final int [] columns = m_settings.getColumnOrder ();
             final StringBuffer buf = new StringBuffer ();
@@ -612,7 +612,7 @@ final class ReportGenerator extends AbstractReportGenerator
             final File outFile = getItemFile (NESTED_ITEMS_PARENT_DIR, m_reportIDNamespace.getID (getItemKey (item)));
             
             // TODO: deal with overwrites
-            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutputEncoding (), true);
+            out = openOutFile (Files.newFile (m_settings.getOutDir (), outFile), m_settings.getOutEncoding (), true);
             
             final int [] columns = m_settings.getColumnOrder ();            
             final StringBuffer buf = new StringBuffer ();
@@ -756,7 +756,7 @@ final class ReportGenerator extends AbstractReportGenerator
     
     private HTMLDocument createPage (final String title)
     {
-        final HTMLDocument page = new HTMLDocument (title, m_settings.getOutputEncoding ());
+        final HTMLDocument page = new HTMLDocument (title, m_settings.getOutEncoding ());
         page.addStyle (CSS); // TODO: split by visit type
         
         return page;
@@ -1135,7 +1135,7 @@ final class ReportGenerator extends AbstractReportGenerator
                 BufferedReader in = null;
                 try
                 {
-                    in = new BufferedReader (new InputStreamReader (new FileInputStream(srcFile), m_settings.getSourceEncoding ()), IO_BUF_SIZE);
+                    in = new BufferedReader (new InputStreamReader (new FileInputStream(srcFile), m_settings.getInEncoding ()), IO_BUF_SIZE);
 
                     final boolean markupCoverage = m_hasLineNumberInfo;
                     
