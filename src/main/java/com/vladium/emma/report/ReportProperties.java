@@ -257,7 +257,9 @@ abstract class ReportProperties implements IAppErrorCodes
         final ParsedProperties result = new ParsedProperties ();
         {
             result.setOutEncoding(getReportProperty (properties, type, IReportProperties.OUT_ENCODING, false, false));
-            result.setInEncoding(getReportProperty (properties, type, IReportProperties.IN_ENCODING, false, false));
+            // Set encoding from properties or platform default encoding.
+            result.setInEncoding(getReportProperty(properties, type, IReportProperties.IN_ENCODING, false, false,
+                    System.getProperty("file.encoding", "UTF-8")));
         }
         
         // TODO: outDirName is no longer supported
