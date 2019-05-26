@@ -17,19 +17,17 @@ import com.vladium.emma.data.ICoverageData;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IReportGenerator
-{
+public interface IReportGenerator {
     // public: ................................................................
-    
-    String getType ();
-    
+
+    String getType();
+
     // TODO: make sure reporters are reusable
-    
-    void process (IMetaData mdata, ICoverageData cdata, SourcePathCache cache, IProperties parameters)
-        throws EMMARuntimeException;
-    
-    void cleanup ();
-        
+
+    void process(IMetaData mdata, ICoverageData cdata, SourcePathCache cache, IProperties parameters)
+            throws EMMARuntimeException;
+
+    void cleanup();
+
 } // end of interface
 // ----------------------------------------------------------------------------

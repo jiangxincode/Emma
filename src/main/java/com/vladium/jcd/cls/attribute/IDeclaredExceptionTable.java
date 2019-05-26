@@ -19,40 +19,37 @@ import com.vladium.jcd.compiler.IClassFormatOutput;
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-interface IDeclaredExceptionTable extends Cloneable, IClassFormatOutput
-{
+public interface IDeclaredExceptionTable extends Cloneable, IClassFormatOutput {
     // public: ................................................................
 
     // ACCESSORS:
-    
+
     /**
      * Returns the {@link com.vladium.jcd.cls.constant.CONSTANT_Class_info} constant
      * pool index for offset'th exception type thrown by the method that contains
      * this this exception index table in its ExceptionsAttribute_info attribute.
      * 
      * @param offset thrown exception class number [must be in [0, size()) range]
-     * @return constant pool index [always positive]  
+     * @return constant pool index [always positive]
      * 
      * @throws IndexOutOfBoundsException if 'offset' is outside of valid range
      */
-    int get (int offset);
-    
-    /**
-     * Returns the number of exception types the containing method professes
-     * to throw.
-     */
-    int size ();
-    
-    /**
-     * Returns the total length of this table when converted to
-     * .class format [including 2 count bytes]
-     */
-    long length ();
-    
-    // Cloneable: adjust the access level of Object.clone():
-    Object clone ();
+    int get(int offset);
 
+    /**
+     * Returns the number of exception types the containing method professes to
+     * throw.
+     */
+    int size();
+
+    /**
+     * Returns the total length of this table when converted to .class format
+     * [including 2 count bytes]
+     */
+    long length();
+
+    // Cloneable: adjust the access level of Object.clone():
+    Object clone();
 
     // MUTATORS:
 
@@ -60,25 +57,28 @@ interface IDeclaredExceptionTable extends Cloneable, IClassFormatOutput
      * Appends a new exception class pointer to the collection. No duplicate checks
      * are made.
      * 
-     * @param exception_index constant pool index [must be positive; input not validated]
+     * @param exception_index constant pool index [must be positive; input not
+     *                        validated]
      * @return offset of the new pointer [same as {@link #size()}-1 when called
-     * after this method] 
+     *         after this method]
      */
-    int add (int exception_index);
-    
+    int add(int exception_index);
+
     /**
-     * Replaces exception class pointer number 'offset' with new value 'interface_index'.
-     * No duplicate checks are made. It is the responsibility of the caller to
-     * ensure that the relevant CONSTANT_Class_info descriptor will be found
-     * in the constant pool, in the slot pointed to by 'exception_index'.
+     * Replaces exception class pointer number 'offset' with new value
+     * 'interface_index'. No duplicate checks are made. It is the responsibility of
+     * the caller to ensure that the relevant CONSTANT_Class_info descriptor will be
+     * found in the constant pool, in the slot pointed to by 'exception_index'.
      * 
-     * @param offset thrown exception class number [must be in [0, size()) range]
-     * @param exception_index constant pool index [must be positive; input not validated]
+     * @param offset          thrown exception class number [must be in [0, size())
+     *                        range]
+     * @param exception_index constant pool index [must be positive; input not
+     *                        validated]
      * @return previous value at the given index [always positive]
      * 
      * @throws IndexOutOfBoundsException if 'offset' is outside of valid range
      */
-    int set (int offset, int exception_index);
-    
+    int set(int offset, int exception_index);
+
 } // end of interface
 // ----------------------------------------------------------------------------

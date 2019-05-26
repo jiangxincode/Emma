@@ -14,40 +14,32 @@ import java.io.InputStream;
 
 // ----------------------------------------------------------------------------
 /**
- * A trivial extension to java.io.DataInputStream to provide methods for
- * reading unsigned 16- and 32-bit integers with simple mnemonics. It uses
+ * A trivial extension to java.io.DataInputStream to provide methods for reading
+ * unsigned 16- and 32-bit integers with simple mnemonics. It uses
  * correspondingly wider native types to preserve the full range of the unsigned
  * types.
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-final class UDataInputStream extends DataInputStream
-{
+public final class UDataInputStream extends DataInputStream {
     // public: ................................................................
 
-    
-    public UDataInputStream (final InputStream _in)
-    {
-        super (_in);
+    public UDataInputStream(final InputStream _in) {
+        super(_in);
     }
 
-    
-    public final int readU2 () throws IOException
-    {
-        final short value = readShort ();
-        
+    public final int readU2() throws IOException {
+        final short value = readShort();
+
         return ((int) value) & 0xFFFF; // widening cast sign-extends
     }
-    
-    
-    public final long readU4 () throws IOException
-    {
-        final int value = readInt ();
-        
+
+    public final long readU4() throws IOException {
+        final int value = readInt();
+
         return ((long) value) & 0xFFFFFFFFL; // widening cast sign-extends
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................

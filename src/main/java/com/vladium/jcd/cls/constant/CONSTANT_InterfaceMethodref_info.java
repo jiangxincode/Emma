@@ -15,8 +15,9 @@ import com.vladium.jcd.lib.UDataInputStream;
 // ----------------------------------------------------------------------------
 /**
  * This structure is used in the constant pool to represent dynamic references
- * to interface methods. The class_index item of a CONSTANT_InterfaceMethodref_info
- * structure must be an interface type that declares the given method. 
+ * to interface methods. The class_index item of a
+ * CONSTANT_InterfaceMethodref_info structure must be an interface type that
+ * declares the given method.
  * 
  * @see CONSTANT_ref_info
  * @see CONSTANT_Fieldref_info
@@ -24,46 +25,38 @@ import com.vladium.jcd.lib.UDataInputStream;
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-final class CONSTANT_InterfaceMethodref_info extends CONSTANT_ref_info
-{
+public final class CONSTANT_InterfaceMethodref_info extends CONSTANT_ref_info {
     // public: ................................................................
 
     public static final byte TAG = 11;
-    
-    
-    public CONSTANT_InterfaceMethodref_info (final int class_index, final int name_and_type_index)
-    {
-        super (class_index, name_and_type_index);
+
+    public CONSTANT_InterfaceMethodref_info(final int class_index, final int name_and_type_index) {
+        super(class_index, name_and_type_index);
     }
 
-    public final byte tag ()
-    {
+    public final byte tag() {
         return TAG;
     }
-    
+
     // Visitor:
-    
-    public Object accept (final ICONSTANTVisitor visitor, final Object ctx)
-    {
-        return visitor.visit (this, ctx);
+
+    public Object accept(final ICONSTANTVisitor visitor, final Object ctx) {
+        return visitor.visit(this, ctx);
     }
-        
-    public String toString ()
-    {
-        return "CONSTANT_InterfaceMethodref: [class_index = " + m_class_index + ", name_and_type_index = " + m_name_and_type_index + ']';
+
+    public String toString() {
+        return "CONSTANT_InterfaceMethodref: [class_index = " + m_class_index + ", name_and_type_index = "
+                + m_name_and_type_index + ']';
     }
-    
+
     // Cloneable: inherited clone() is Ok
-    
+
     // protected: .............................................................
 
-    
-    protected CONSTANT_InterfaceMethodref_info (final UDataInputStream bytes) throws IOException
-    {
-        super (bytes);
+    protected CONSTANT_InterfaceMethodref_info(final UDataInputStream bytes) throws IOException {
+        super(bytes);
     }
-    
+
     // package: ...............................................................
 
     // private: ...............................................................

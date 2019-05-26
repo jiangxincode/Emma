@@ -12,12 +12,10 @@ package com.vladium.emma.report.html.doc;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IContent
-{
+public interface IContent {
     // public: ................................................................
-    
-    void emit (final HTMLWriter out);
-    
+
+    void emit(final HTMLWriter out);
+
 } // end of interface
 // ----------------------------------------------------------------------------

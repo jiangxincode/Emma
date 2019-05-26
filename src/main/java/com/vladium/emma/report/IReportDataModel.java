@@ -15,24 +15,20 @@ import com.vladium.emma.data.IMetaData;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IReportDataModel
-{
+public interface IReportDataModel {
     // public: ................................................................
-    
-    IReportDataView getView (int viewType);
-    
-    abstract class Factory
-    {
+
+    IReportDataView getView(int viewType);
+
+    abstract class Factory {
         /**
-         * This operation merely stores mdata and cdata references, it does not
-         * perform any data processing until getView() is actually called.
+         * This operation merely stores mdata and cdata references, it does not perform
+         * any data processing until getView() is actually called.
          */
-        public static IReportDataModel create (final IMetaData mdata, final ICoverageData cdata)
-        {
-            return new ReportDataModel (mdata, cdata);
+        public static IReportDataModel create(final IMetaData mdata, final ICoverageData cdata) {
+            return new ReportDataModel(mdata, cdata);
         }
-        
+
     } // end of nested class
 
 } // end of interface

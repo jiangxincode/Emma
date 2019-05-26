@@ -12,19 +12,16 @@ package com.vladium.emma.data;
 /**
  * @author Vlad Roubtsov, 2003
  */
-public
-interface IMetadataConstants
-{
+public interface IMetadataConstants {
     // public: ................................................................
-    
+
     int METHOD_NO_LINE_NUMBER_TABLE = 0x01;
-    int METHOD_ABSTRACT_OR_NATIVE   = 0x02;
-    int METHOD_EXCLUDED             = 0x04;
-    int METHOD_ADDED                = 0x08;
-    
+    int METHOD_ABSTRACT_OR_NATIVE = 0x02;
+    int METHOD_EXCLUDED = 0x04;
+    int METHOD_ADDED = 0x08;
+
     int METHOD_NO_BLOCK_DATA = (METHOD_ABSTRACT_OR_NATIVE | METHOD_EXCLUDED | METHOD_ADDED);
     int METHOD_NO_LINE_DATA = (METHOD_NO_LINE_NUMBER_TABLE | METHOD_NO_BLOCK_DATA);
-    
 
 } // end of interface
 // ----------------------------------------------------------------------------

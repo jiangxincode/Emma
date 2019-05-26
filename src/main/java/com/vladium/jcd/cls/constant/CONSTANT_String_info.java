@@ -16,67 +16,57 @@ import com.vladium.jcd.lib.UDataOutputStream;
 // ----------------------------------------------------------------------------
 /**
  * The CONSTANT_String_info structure is used to represent constant objects of
- * the type java.lang.String.<P>
+ * the type java.lang.String.
+ * <P>
  * 
- * The value of the string_index item must be a valid index into the constant pool
- * table. The constant pool entry at that index must be a {@link CONSTANT_Utf8_info}
- * structure representing the sequence of characters to which the
- * java.lang.String object is to be initialized.
+ * The value of the string_index item must be a valid index into the constant
+ * pool table. The constant pool entry at that index must be a
+ * {@link CONSTANT_Utf8_info} structure representing the sequence of characters
+ * to which the java.lang.String object is to be initialized.
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public 
-final class CONSTANT_String_info extends CONSTANT_literal_info
-{
+public final class CONSTANT_String_info extends CONSTANT_literal_info {
     // public: ................................................................
 
     public static final byte TAG = 8;
-    
+
     public int m_string_index;
-    
-    
-    public CONSTANT_String_info (final int string_index)
-    {
+
+    public CONSTANT_String_info(final int string_index) {
         m_string_index = string_index;
     }
 
-
-    public final byte tag ()
-    {
+    public final byte tag() {
         return TAG;
     }
-    
+
     // Visitor:
-    
-    public Object accept (final ICONSTANTVisitor visitor, final Object ctx)
-    {
-        return visitor.visit (this, ctx);
+
+    public Object accept(final ICONSTANTVisitor visitor, final Object ctx) {
+        return visitor.visit(this, ctx);
     }
-    
-    public String toString ()
-    {
+
+    public String toString() {
         return "CONSTANT_String: [string_index = " + m_string_index + ']';
     }
-    
+
     // Cloneable: inherited clone() is Ok
-    
+
     // IClassFormatOutput:
-    
-    public void writeInClassFormat (final UDataOutputStream out) throws IOException
-    {
-        super.writeInClassFormat (out);
-        
-        out.writeU2 (m_string_index);    
+
+    public void writeInClassFormat(final UDataOutputStream out) throws IOException {
+        super.writeInClassFormat(out);
+
+        out.writeU2(m_string_index);
     }
-    
+
     // protected: .............................................................
 
-    
-    protected CONSTANT_String_info (final UDataInputStream bytes) throws IOException
-    {
-        m_string_index = bytes.readU2 ();
+    protected CONSTANT_String_info(final UDataInputStream bytes) throws IOException {
+        m_string_index = bytes.readU2();
     }
-    
+
     // package: ...............................................................
 
     // private: ...............................................................

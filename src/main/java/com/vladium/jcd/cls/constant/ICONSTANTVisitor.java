@@ -12,31 +12,38 @@ package com.vladium.jcd.cls.constant;
 /**
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-interface ICONSTANTVisitor
-{
+public interface ICONSTANTVisitor {
     // public: ................................................................
-    
-    //Object visit (CONSTANT_info constant, Object ctx);
-    
-    Object visit (CONSTANT_Class_info constant, Object ctx);
-    
-    Object visit (CONSTANT_InterfaceMethodref_info constant, Object ctx);
-    Object visit (CONSTANT_Methodref_info constant, Object ctx);
-    Object visit (CONSTANT_Fieldref_info constant, Object ctx);
 
-    Object visit (CONSTANT_Double_info constant, Object ctx);
-    Object visit (CONSTANT_Float_info constant, Object ctx);
-    Object visit (CONSTANT_Integer_info constant, Object ctx);
-    Object visit (CONSTANT_Long_info constant, Object ctx);
-    Object visit (CONSTANT_String_info constant, Object ctx);
+    // Object visit (CONSTANT_info constant, Object ctx);
 
-    Object visit (CONSTANT_Utf8_info constant, Object ctx);
-    Object visit (CONSTANT_NameAndType_info constant, Object ctx);
+    Object visit(CONSTANT_Class_info constant, Object ctx);
 
-	Object visit(CONSTANT_MethodHandle_info constant, Object ctx);
-	Object visit(CONSTANT_InvokeDynamic_info constant, Object ctx);
-	Object visit(CONSTANT_Empty_info constant, Object ctx);
+    Object visit(CONSTANT_InterfaceMethodref_info constant, Object ctx);
+
+    Object visit(CONSTANT_Methodref_info constant, Object ctx);
+
+    Object visit(CONSTANT_Fieldref_info constant, Object ctx);
+
+    Object visit(CONSTANT_Double_info constant, Object ctx);
+
+    Object visit(CONSTANT_Float_info constant, Object ctx);
+
+    Object visit(CONSTANT_Integer_info constant, Object ctx);
+
+    Object visit(CONSTANT_Long_info constant, Object ctx);
+
+    Object visit(CONSTANT_String_info constant, Object ctx);
+
+    Object visit(CONSTANT_Utf8_info constant, Object ctx);
+
+    Object visit(CONSTANT_NameAndType_info constant, Object ctx);
+
+    Object visit(CONSTANT_MethodHandle_info constant, Object ctx);
+
+    Object visit(CONSTANT_InvokeDynamic_info constant, Object ctx);
+
+    Object visit(CONSTANT_Empty_info constant, Object ctx);
 
 } // end of interface
 // ----------------------------------------------------------------------------

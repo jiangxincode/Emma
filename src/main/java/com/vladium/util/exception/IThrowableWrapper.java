@@ -15,16 +15,15 @@ import java.io.PrintWriter;
 /**
  * TODO: javadoc
  * 
- * Any exception that wraps around another exception and wishes to be fully 
- * inspectable by {@link ExceptionCommon} should implement this interface.
- * Note that JDK 1.4+ obsoletes the need for an explicit interface like this,
+ * Any exception that wraps around another exception and wishes to be fully
+ * inspectable by {@link ExceptionCommon} should implement this interface. Note
+ * that JDK 1.4+ obsoletes the need for an explicit interface like this,
  * although the implementation in {@link ExceptionCommon} is upwards compatible
  * with it.
  * 
  * @author Vlad Roubtsov, (C) 2002
  */
-interface IThrowableWrapper
-{
+interface IThrowableWrapper {
     // public: ................................................................
 
     /**
@@ -33,25 +32,25 @@ interface IThrowableWrapper
      * 
      * @return Throwable being wrapped by this object [can be null].
      */
-    Throwable getCause ();
-     
-    /**
-     * Every exception hierarchy implementing this interface must ensure that
-     * this method delegates to super.printStackTrace(pw) where 'super' is the
-     * first superclass not implementing IThrowableWrapper. This is used by
-     * {@link ExceptionCommon} to avoid infinite
-     * recursion and is not meant to be called by other classes.
-     */
-    void __printStackTrace (PrintWriter pw);
+    Throwable getCause();
 
     /**
-     * Every exception hierarchy implementing this interface must ensure that
-     * this method delegates to super.printStackTrace(ps) where 'super' is the
-     * first superclass not implementing IThrowableWrapper. This is used by
-     * {@link ExceptionCommon} to avoid infinite
-     * recursion and is not meant to be called by other classes.
+     * Every exception hierarchy implementing this interface must ensure that this
+     * method delegates to super.printStackTrace(pw) where 'super' is the first
+     * superclass not implementing IThrowableWrapper. This is used by
+     * {@link ExceptionCommon} to avoid infinite recursion and is not meant to be
+     * called by other classes.
      */
-    void __printStackTrace (PrintStream ps);
+    void __printStackTrace(PrintWriter pw);
+
+    /**
+     * Every exception hierarchy implementing this interface must ensure that this
+     * method delegates to super.printStackTrace(ps) where 'super' is the first
+     * superclass not implementing IThrowableWrapper. This is used by
+     * {@link ExceptionCommon} to avoid infinite recursion and is not meant to be
+     * called by other classes.
+     */
+    void __printStackTrace(PrintStream ps);
 
 } // end of interface
 // ----------------------------------------------------------------------------

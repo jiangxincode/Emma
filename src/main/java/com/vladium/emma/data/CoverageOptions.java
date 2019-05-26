@@ -17,70 +17,53 @@ import java.io.Serializable;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class CoverageOptions implements Serializable
-{
+public final class CoverageOptions implements Serializable {
     // public: ................................................................
-    
-    public boolean excludeEmptyClasses ()
-    {
+
+    public boolean excludeEmptyClasses() {
         return m_excludeEmptyClasses;
     }
-    
-    public boolean excludeSyntheticMethods ()
-    {
+
+    public boolean excludeSyntheticMethods() {
         return m_excludeSyntheticMethods;
     }
-    
-    public boolean excludeBridgeMethods ()
-    {
+
+    public boolean excludeBridgeMethods() {
         return m_excludeBridgeMethods;
     }
-    
-    public boolean doSUIDCompensation ()
-    {
+
+    public boolean doSUIDCompensation() {
         return m_doSUIDCompensation;
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
 
     /*
-     * Package-private to be accessble by CoverageOptionsFactory
-     * (the factory is in a separate source file to avoid spurious
-     * classloading dependency via InnerClasses attr)
+     * Package-private to be accessble by CoverageOptionsFactory (the factory is in
+     * a separate source file to avoid spurious classloading dependency via
+     * InnerClasses attr)
      */
-    CoverageOptions (final boolean excludeEmptyClasses,
-                     final boolean excludeSyntheticMethods,
-                     final boolean excludeBridgeMethods,
-                     final boolean doSUIDCompensation)
-    {
+    CoverageOptions(final boolean excludeEmptyClasses, final boolean excludeSyntheticMethods,
+            final boolean excludeBridgeMethods, final boolean doSUIDCompensation) {
         m_excludeEmptyClasses = excludeEmptyClasses;
         m_excludeSyntheticMethods = excludeSyntheticMethods;
         m_excludeBridgeMethods = excludeBridgeMethods;
         m_doSUIDCompensation = doSUIDCompensation;
     }
-    
-    
-    static CoverageOptions readExternal (final DataInput in)
-        throws IOException
-    {
-        return new CoverageOptions (in.readBoolean (),
-                                    in.readBoolean (),
-                                    in.readBoolean (),
-                                    in.readBoolean ());
+
+    static CoverageOptions readExternal(final DataInput in) throws IOException {
+        return new CoverageOptions(in.readBoolean(), in.readBoolean(), in.readBoolean(), in.readBoolean());
     }
-    
-    static void writeExternal (final CoverageOptions options, final DataOutput out)
-        throws IOException
-    {
-        out.writeBoolean (options.m_excludeEmptyClasses);
-        out.writeBoolean (options.m_excludeSyntheticMethods);
-        out.writeBoolean (options.m_excludeBridgeMethods);
-        out.writeBoolean (options.m_doSUIDCompensation);
+
+    static void writeExternal(final CoverageOptions options, final DataOutput out) throws IOException {
+        out.writeBoolean(options.m_excludeEmptyClasses);
+        out.writeBoolean(options.m_excludeSyntheticMethods);
+        out.writeBoolean(options.m_excludeBridgeMethods);
+        out.writeBoolean(options.m_doSUIDCompensation);
     }
-    
+
     // private: ...............................................................
 
     private final boolean m_excludeEmptyClasses;

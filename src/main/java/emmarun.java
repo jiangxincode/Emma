@@ -1,3 +1,4 @@
+
 /* Copyright (C) 2003 Vladimir Roubtsov. All rights reserved.
  * 
  * This program and the accompanying materials are made available under
@@ -13,24 +14,20 @@ import com.vladium.emma.EMMARuntimeException;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class emmarun
-{
+public final class emmarun {
     // public: ................................................................
-    
-    // TODO: set m_out consistently with LoggerInit    
-    
-    public static void main (final String [] args)
-        throws EMMARuntimeException
-    {
-        final Command command = Command.create ("run", emmarun.class.getName (), args);
-        command.run ();
+
+    // TODO: set m_out consistently with LoggerInit
+
+    public static void main(final String[] args) throws EMMARuntimeException {
+        final Command command = Command.create("run", emmarun.class.getName(), args);
+        command.run();
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
 
 } // end of class

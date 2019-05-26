@@ -12,66 +12,57 @@ package com.vladium.util;
 /**
  * @author Vlad Roubtsov, (C) 2002
  */
-public
-abstract class WCMatcher
-{
+public abstract class WCMatcher {
     // public: ................................................................
-    
 
-    public static WCMatcher compile (final String pattern)
-    {
-        if (pattern == null) throw new IllegalArgumentException ("null input: pattern");
-        
-        final char [] chars = pattern.toCharArray (); // is this faster than using charAt()?
+    public static WCMatcher compile(final String pattern) {
+        if (pattern == null)
+            throw new IllegalArgumentException("null input: pattern");
+
+        final char[] chars = pattern.toCharArray(); // is this faster than using charAt()?
         final int charsLength = chars.length;
-        
+
         if (charsLength == 0)
             return EMPTY_MATCHER; // TODO: should be an EMPTY_MATCHER
-        else
-        {
+        else {
             int patternLength = 0, starCount = 0, questionCount = 0;
             boolean star = false;
-            
-            for (int c = 0; c < charsLength; ++ c)
-            {
-                final char ch = chars [c];
-                if (ch == '*')
-                {
-                    if (! star)
-                    {
+
+            for (int c = 0; c < charsLength; ++c) {
+                final char ch = chars[c];
+                if (ch == '*') {
+                    if (!star) {
                         star = true;
-                        ++ starCount; 
-                        chars [patternLength ++] = '*';
+                        ++starCount;
+                        chars[patternLength++] = '*';
                     }
-                }
-                else
-                {
+                } else {
                     star = false;
-                    if (ch == '?') ++ questionCount;
-                    chars [patternLength ++] = ch;
+                    if (ch == '?')
+                        ++questionCount;
+                    chars[patternLength++] = ch;
                 }
             }
-            
+
             // [assertion: patternLength > 0]
-            
-            if ((starCount == 1) && (questionCount == 0))
-            {
+
+            if ((starCount == 1) && (questionCount == 0)) {
                 if (patternLength == 1)
                     return ALL_MATCHER;
-                else if (chars [0] == '*')
-                    return new EndsWithMatcher (chars, patternLength);
-                else if (chars [patternLength - 1] == '*')
-                    return new StartsWithMatcher (chars, patternLength);
+                else if (chars[0] == '*')
+                    return new EndsWithMatcher(chars, patternLength);
+                else if (chars[patternLength - 1] == '*')
+                    return new StartsWithMatcher(chars, patternLength);
             }
-            
-            return new PatternMatcher (chars, patternLength);
+
+            return new PatternMatcher(chars, patternLength);
         }
     }
-    
-    public abstract boolean matches (String s);
-    public abstract boolean matches (char [] chars);
 
-        
+    public abstract boolean matches(String s);
+
+    public abstract boolean matches(char[] chars);
+
 //    private boolean matches (int pi, int si, final char [] string)
 //    {
 //        System.out.println ("pi = " + pi + ", si = " + si);
@@ -100,269 +91,253 @@ abstract class WCMatcher
 //            } // end of switch
 //        }
 //    }
-    
 
-        
     // protected: .............................................................
-    
+
     // package: ...............................................................
 
+    WCMatcher() {
+    }
 
-    WCMatcher () {}
-    
     // private: ...............................................................
-    
-    
-    private static final class AllMatcher extends WCMatcher
-    {
-        public final boolean matches (final String s)
-        {
-            if (s == null) throw new IllegalArgumentException  ("null input: s");
-            
-            return true;
-        }
-        
-        public final boolean matches (final char [] chars)
-        {
-            if (chars == null) throw new IllegalArgumentException  ("null input: chars");
-            
-            return true;
-        }
-        
-    } // end of nested class
-    
 
-    private static final class EmptyMatcher extends WCMatcher
-    {
-        public final boolean matches (final String s)
-        {
-            if (s == null) throw new IllegalArgumentException  ("null input: s");
-            
+    private static final class AllMatcher extends WCMatcher {
+        public final boolean matches(final String s) {
+            if (s == null)
+                throw new IllegalArgumentException("null input: s");
+
+            return true;
+        }
+
+        public final boolean matches(final char[] chars) {
+            if (chars == null)
+                throw new IllegalArgumentException("null input: chars");
+
+            return true;
+        }
+
+    } // end of nested class
+
+    private static final class EmptyMatcher extends WCMatcher {
+        public final boolean matches(final String s) {
+            if (s == null)
+                throw new IllegalArgumentException("null input: s");
+
             return false;
         }
-        
-        public final boolean matches (final char [] chars)
-        {
-            if (chars == null) throw new IllegalArgumentException  ("null input: chars");
-            
+
+        public final boolean matches(final char[] chars) {
+            if (chars == null)
+                throw new IllegalArgumentException("null input: chars");
+
             return chars.length == 0;
         }
-        
+
     } // end of nested class
-    
-    
-    private static final class StartsWithMatcher extends WCMatcher
-    {
-        public final boolean matches (final String s)
-        {
-            if (s == null) throw new IllegalArgumentException  ("null input: s");
-            
-            return s.startsWith (m_prefix);
+
+    private static final class StartsWithMatcher extends WCMatcher {
+        public final boolean matches(final String s) {
+            if (s == null)
+                throw new IllegalArgumentException("null input: s");
+
+            return s.startsWith(m_prefix);
         }
-        
-        public final boolean matches (final char [] chars)
-        {
-            if (chars == null) throw new IllegalArgumentException  ("null input: chars");
-            
-            final char [] prefixChars = m_prefixChars;
+
+        public final boolean matches(final char[] chars) {
+            if (chars == null)
+                throw new IllegalArgumentException("null input: chars");
+
+            final char[] prefixChars = m_prefixChars;
             final int prefixLength = prefixChars.length - 1;
-            
-            if (chars.length < prefixLength) return false;
-            
-            for (int c = 0; c < prefixLength; ++ c)
-            {
-                if (chars [c] != prefixChars [c]) return false; 
+
+            if (chars.length < prefixLength)
+                return false;
+
+            for (int c = 0; c < prefixLength; ++c) {
+                if (chars[c] != prefixChars[c])
+                    return false;
             }
-            
+
             return true;
         }
-        
-        StartsWithMatcher (final char [] pattern, final int patternLength)
-        {
-            m_prefixChars = pattern;            
-            m_prefix = new String (pattern, 0, patternLength - 1);
+
+        StartsWithMatcher(final char[] pattern, final int patternLength) {
+            m_prefixChars = pattern;
+            m_prefix = new String(pattern, 0, patternLength - 1);
         }
-        
-        private final char [] m_prefixChars;
+
+        private final char[] m_prefixChars;
         private final String m_prefix;
-        
+
     } // end of nested class
-    
-    
-    private static final class EndsWithMatcher extends WCMatcher
-    {
-        public final boolean matches (final String s)
-        {
-            if (s == null) throw new IllegalArgumentException  ("null input: s");
-            
-            return s.endsWith (m_suffix);
+
+    private static final class EndsWithMatcher extends WCMatcher {
+        public final boolean matches(final String s) {
+            if (s == null)
+                throw new IllegalArgumentException("null input: s");
+
+            return s.endsWith(m_suffix);
         }
-        
-        public final boolean matches (final char [] chars)
-        {
-            if (chars == null) throw new IllegalArgumentException  ("null input: chars");
-            
-            final char [] suffixChars = m_suffixChars;
+
+        public final boolean matches(final char[] chars) {
+            if (chars == null)
+                throw new IllegalArgumentException("null input: chars");
+
+            final char[] suffixChars = m_suffixChars;
             final int suffixLength = suffixChars.length - 1;
             final int charsLength = chars.length;
-            
-            if (charsLength < suffixLength) return false;
-            
-            for (int c = 0; c < suffixLength; ++ c)
-            {
-                if (chars [charsLength - 1 - c] != suffixChars [suffixLength - c]) return false; 
+
+            if (charsLength < suffixLength)
+                return false;
+
+            for (int c = 0; c < suffixLength; ++c) {
+                if (chars[charsLength - 1 - c] != suffixChars[suffixLength - c])
+                    return false;
             }
-            
+
             return true;
         }
-        
-        EndsWithMatcher (final char [] pattern, final int patternLength)
-        {
+
+        EndsWithMatcher(final char[] pattern, final int patternLength) {
             m_suffixChars = pattern;
-            m_suffix = new String (pattern, 1, patternLength - 1);
+            m_suffix = new String(pattern, 1, patternLength - 1);
         }
-        
-        private final char [] m_suffixChars;
+
+        private final char[] m_suffixChars;
         private final String m_suffix;
-        
+
     } // end of nested class
-    
 
-    private static final class PatternMatcher extends WCMatcher
-    {
-        public final boolean matches (final String s)
-        {
-            if (s == null) throw new IllegalArgumentException  ("null input: s");
+    private static final class PatternMatcher extends WCMatcher {
+        public final boolean matches(final String s) {
+            if (s == null)
+                throw new IllegalArgumentException("null input: s");
 
-            final char [] string = s.toCharArray (); // implies an array copy; is this faster than using charAt()?
+            final char[] string = s.toCharArray(); // implies an array copy; is this faster than using charAt()?
             final int stringLength = string.length;
 
-            final char [] pattern = m_pattern;
+            final char[] pattern = m_pattern;
             final int patternLength = m_patternLength;
-            
+
             // [assertion: patternLength > 0]
-            
+
             int si = 0, pi = 0;
             boolean star = false;
-            
-            
-      next: while (true)
-            {
-                //System.out.println ("pi = " + pi + ", si = " + si);
-                
+
+            next: while (true) {
+                // System.out.println ("pi = " + pi + ", si = " + si);
+
                 int i = 0;
-                for ( ; pi + i < patternLength; ++ i)
-                {
-                    final char patternChar = pattern [pi + i];
-                     
-                    if (patternChar == '*')
-                    {
+                for (; pi + i < patternLength; ++i) {
+                    final char patternChar = pattern[pi + i];
+
+                    if (patternChar == '*') {
                         si += i;
                         pi += (i + 1);
-                        
+
                         star = true;
                         continue next;
                     }
-                    
+
                     final int si_i = si + i;
-                     
-                    if (si_i == stringLength) return false;
-                    
-                    if (patternChar != string [si_i])
-                    {
-                        if (patternChar == '?') continue;
-                        
-                        if (! star) return false;
-                        ++ si;
-                        
+
+                    if (si_i == stringLength)
+                        return false;
+
+                    if (patternChar != string[si_i]) {
+                        if (patternChar == '?')
+                            continue;
+
+                        if (!star)
+                            return false;
+                        ++si;
+
                         continue next;
                     }
-                    
+
                 } // end of for
-                
-                if (si + i == stringLength) return true;
-                
-                if (! star) return false;
-                ++ si;
-                
+
+                if (si + i == stringLength)
+                    return true;
+
+                if (!star)
+                    return false;
+                ++si;
+
                 // [continue next;]
             }
         }
-        
-        
-        public final boolean matches (final char [] string)
-        {
-            if (string == null) throw new IllegalArgumentException  ("null input: string");
+
+        public final boolean matches(final char[] string) {
+            if (string == null)
+                throw new IllegalArgumentException("null input: string");
 
             final int stringLength = string.length;
 
-            final char [] pattern = m_pattern;
+            final char[] pattern = m_pattern;
             final int patternLength = m_patternLength;
-            
+
             // [assertion: patternLength > 0]
-            
+
             int si = 0, pi = 0;
             boolean star = false;
-            
-            
-      next: while (true)
-            {
-                //System.out.println ("pi = " + pi + ", si = " + si);
-                
+
+            next: while (true) {
+                // System.out.println ("pi = " + pi + ", si = " + si);
+
                 int i = 0;
-                for ( ; pi + i < patternLength; ++ i)
-                {
-                    final char patternChar = pattern [pi + i];
-                     
-                    if (patternChar == '*')
-                    {
+                for (; pi + i < patternLength; ++i) {
+                    final char patternChar = pattern[pi + i];
+
+                    if (patternChar == '*') {
                         si += i;
                         pi += (i + 1);
-                        
+
                         star = true;
                         continue next;
                     }
-                    
+
                     final int si_i = si + i;
-                     
-                    if (si_i == stringLength) return false;
-                    
-                    if (patternChar != string [si_i])
-                    {
-                        if (patternChar == '?') continue;
-                        
-                        if (! star) return false;
-                        ++ si;
-                        
+
+                    if (si_i == stringLength)
+                        return false;
+
+                    if (patternChar != string[si_i]) {
+                        if (patternChar == '?')
+                            continue;
+
+                        if (!star)
+                            return false;
+                        ++si;
+
                         continue next;
                     }
-                    
+
                 } // end of for
-                
-                if (si + i == stringLength) return true;
-                
-                if (! star) return false;
-                ++ si;
-                
+
+                if (si + i == stringLength)
+                    return true;
+
+                if (!star)
+                    return false;
+                ++si;
+
                 // [continue next;]
             }
         }
-        
-        PatternMatcher (final char [] pattern, final int patternLength)
-        {
+
+        PatternMatcher(final char[] pattern, final int patternLength) {
             m_pattern = pattern;
             m_patternLength = patternLength;
         }
-        
-        
-        private final char [] m_pattern;
+
+        private final char[] m_pattern;
         private final int m_patternLength;
-        
+
     } // end of nested class
 
-        
-    private static final WCMatcher ALL_MATCHER = new AllMatcher ();
-    private static final WCMatcher EMPTY_MATCHER = new EmptyMatcher ();
+    private static final WCMatcher ALL_MATCHER = new AllMatcher();
+    private static final WCMatcher EMPTY_MATCHER = new EmptyMatcher();
 
 } // end of class
 // ----------------------------------------------------------------------------

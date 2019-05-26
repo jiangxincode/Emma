@@ -10,45 +10,39 @@ package com.vladium.util;
 
 // ----------------------------------------------------------------------------
 /**
- * Information context for {@link IClassLoadStrategy#getClassLoader(ClassLoadContext)}.
+ * Information context for
+ * {@link IClassLoadStrategy#getClassLoader(ClassLoadContext)}.
  * 
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-class ClassLoadContext
-{
+public class ClassLoadContext {
     // public: ................................................................
-    
-    
+
     /**
-     * Returns the class representing the caller of {@link ClassLoaderResolver}
-     * API. Can be used to retrieve the caller's classloader etc (which may be
-     * different from the ClassLoaderResolver's own classloader) ['null' if caller
-     * resolver could be instantiated due to security restrictions]. 
+     * Returns the class representing the caller of {@link ClassLoaderResolver} API.
+     * Can be used to retrieve the caller's classloader etc (which may be different
+     * from the ClassLoaderResolver's own classloader) ['null' if caller resolver
+     * could be instantiated due to security restrictions].
      */
-    public final Class getCallerClass ()
-    {
+    public final Class getCallerClass() {
         return m_caller;
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
-    
+
     /**
      * This constructor is package-private to restrict instantiation to
      * {@link ClassLoaderResolver} only.
      * 
      * @param caller [can be null]
      */
-    ClassLoadContext (final Class caller)
-    {
+    ClassLoadContext(final Class caller) {
         m_caller = caller;
     }
-    
+
     // private: ...............................................................
-    
 
     private final Class m_caller;
 

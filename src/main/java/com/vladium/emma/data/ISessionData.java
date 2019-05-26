@@ -12,13 +12,12 @@ package com.vladium.emma.data;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface ISessionData
-{
+public interface ISessionData {
     // public: ................................................................
-    
-    IMetaData getMetaData ();
-    ICoverageData getCoverageData ();
+
+    IMetaData getMetaData();
+
+    ICoverageData getCoverageData();
 
 } // end of interface
 // ----------------------------------------------------------------------------

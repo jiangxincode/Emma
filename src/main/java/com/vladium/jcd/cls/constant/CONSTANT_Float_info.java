@@ -16,64 +16,55 @@ import com.vladium.jcd.lib.UDataOutputStream;
 // ----------------------------------------------------------------------------
 /**
  * The CONSTANT_Integer_info and CONSTANT_Float_info structures represent
- * four-byte numeric (int and float) constants.<P>
+ * four-byte numeric (int and float) constants.
+ * <P>
  * 
- * The bytes item of the CONSTANT_Float_info structure contains the value of
- * the float constant in IEEE 754 floating-point "single format" bit layout.
+ * The bytes item of the CONSTANT_Float_info structure contains the value of the
+ * float constant in IEEE 754 floating-point "single format" bit layout.
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-final class CONSTANT_Float_info extends CONSTANT_literal_info
-{
+public final class CONSTANT_Float_info extends CONSTANT_literal_info {
     // public: ................................................................
 
     public static final byte TAG = 4;
-    
+
     public float m_value;
-    
-    
-    public CONSTANT_Float_info (final float value)
-    {
+
+    public CONSTANT_Float_info(final float value) {
         m_value = value;
     }
 
-    public final byte tag ()
-    {
+    public final byte tag() {
         return TAG;
     }
-    
+
     // Visitor:
-    
-    public Object accept (final ICONSTANTVisitor visitor, final Object ctx)
-    {
-        return visitor.visit (this, ctx);
+
+    public Object accept(final ICONSTANTVisitor visitor, final Object ctx) {
+        return visitor.visit(this, ctx);
     }
-    
-    public String toString ()
-    {
-        return Float.toString (m_value);
+
+    public String toString() {
+        return Float.toString(m_value);
     }
-    
+
     // Cloneable: inherited clone() is Ok
-    
+
     // IClassFormatOutput:
-    
-    public void writeInClassFormat (final UDataOutputStream out) throws IOException
-    {
-        super.writeInClassFormat (out);
-        
-        out.writeFloat (m_value);
+
+    public void writeInClassFormat(final UDataOutputStream out) throws IOException {
+        super.writeInClassFormat(out);
+
+        out.writeFloat(m_value);
     }
-    
+
     // protected: .............................................................
 
-    
-    protected CONSTANT_Float_info (final UDataInputStream bytes) throws IOException
-    {
-        m_value = bytes.readFloat ();
+    protected CONSTANT_Float_info(final UDataInputStream bytes) throws IOException {
+        m_value = bytes.readFloat();
     }
-    
+
     // package: ...............................................................
 
     // private: ...............................................................

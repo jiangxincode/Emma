@@ -12,54 +12,42 @@ package com.vladium.emma.report;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class AllItem extends Item
-{
+public final class AllItem extends Item {
     // public: ................................................................
-    
-    public AllItem ()
-    {
-        super (null);
+
+    public AllItem() {
+        super(null);
     }
-    
-    public String getName ()
-    {
+
+    public String getName() {
         return "all classes";
     }
-        
-    public void accept (final IItemVisitor visitor, final Object ctx)
-    {
-        visitor.visit (this, ctx);
+
+    public void accept(final IItemVisitor visitor, final Object ctx) {
+        visitor.visit(this, ctx);
     }
-    
+
     // TODO: remove these instance methods returning static data
-    public final IItemMetadata getMetadata ()
-    {
+    public final IItemMetadata getMetadata() {
         return METADATA;
     }
 
-    public static IItemMetadata getTypeMetadata ()
-    {
+    public static IItemMetadata getTypeMetadata() {
         return METADATA;
     }
-        
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
+
     private static final Item.ItemMetadata METADATA; // set in <clinit>
-        
-    static
-    {        
-        METADATA = new Item.ItemMetadata (IItemMetadata.TYPE_ID_ALL, "all",
-            1 << IItemAttribute.ATTRIBUTE_NAME_ID |
-            1 << IItemAttribute.ATTRIBUTE_CLASS_COVERAGE_ID |
-            1 << IItemAttribute.ATTRIBUTE_METHOD_COVERAGE_ID |
-            1 << IItemAttribute.ATTRIBUTE_BLOCK_COVERAGE_ID |
-            1 << IItemAttribute.ATTRIBUTE_LINE_COVERAGE_ID);
+
+    static {
+        METADATA = new Item.ItemMetadata(IItemMetadata.TYPE_ID_ALL, "all", 1 << IItemAttribute.ATTRIBUTE_NAME_ID
+                | 1 << IItemAttribute.ATTRIBUTE_CLASS_COVERAGE_ID | 1 << IItemAttribute.ATTRIBUTE_METHOD_COVERAGE_ID
+                | 1 << IItemAttribute.ATTRIBUTE_BLOCK_COVERAGE_ID | 1 << IItemAttribute.ATTRIBUTE_LINE_COVERAGE_ID);
     }
 
 } // end of class

@@ -16,86 +16,78 @@ import com.vladium.jcd.lib.UDataOutputStream;
 
 // ----------------------------------------------------------------------------
 /**
- * The CONSTANT_NameAndType_info structure is used to represent a field or method,
- * without indicating which class or interface type it belongs to.<P>
+ * The CONSTANT_NameAndType_info structure is used to represent a field or
+ * method, without indicating which class or interface type it belongs to.
+ * <P>
  * 
  * The value of the name_index item must be a valid index into the constant pool
- * table. The constant pool entry at that index must be a {@link CONSTANT_Utf8_info}
- * structure representing a valid Java field name or method name stored as a simple
- * (not fully qualified) name, that is, as a Java identifier.<P>
+ * table. The constant pool entry at that index must be a
+ * {@link CONSTANT_Utf8_info} structure representing a valid Java field name or
+ * method name stored as a simple (not fully qualified) name, that is, as a Java
+ * identifier.
+ * <P>
  * 
- * The value of the descriptor_index item must be a valid index into the constant
- * pool table. The constant pool entry at that index must be a {@link CONSTANT_Utf8_info}
- * structure representing a valid Java field descriptor or method descriptor.
+ * The value of the descriptor_index item must be a valid index into the
+ * constant pool table. The constant pool entry at that index must be a
+ * {@link CONSTANT_Utf8_info} structure representing a valid Java field
+ * descriptor or method descriptor.
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-final class CONSTANT_NameAndType_info extends CONSTANT_info
-{
+public final class CONSTANT_NameAndType_info extends CONSTANT_info {
     // public: ................................................................
 
     public static final byte TAG = 12;
-    
-    
+
     public int m_name_index;
     public int m_descriptor_index;
-    
-    
-    public CONSTANT_NameAndType_info (final int name_index, final int descriptor_index)
-    {
+
+    public CONSTANT_NameAndType_info(final int name_index, final int descriptor_index) {
         m_name_index = name_index;
         m_descriptor_index = descriptor_index;
     }
-    
-    public final byte tag ()
-    {
+
+    public final byte tag() {
         return TAG;
     }
-    
-    public String getName (final ClassDef cls)
-    {
-        return ((CONSTANT_Utf8_info) cls.getConstants ().get (m_name_index)).m_value;
+
+    public String getName(final ClassDef cls) {
+        return ((CONSTANT_Utf8_info) cls.getConstants().get(m_name_index)).m_value;
     }
-    
-    public String getDescriptor (final ClassDef cls)
-    {
-        return ((CONSTANT_Utf8_info) cls.getConstants ().get (m_descriptor_index)).m_value;
+
+    public String getDescriptor(final ClassDef cls) {
+        return ((CONSTANT_Utf8_info) cls.getConstants().get(m_descriptor_index)).m_value;
     }
-    
+
     // Visitor:
-    
-    public Object accept (final ICONSTANTVisitor visitor, final Object ctx)
-    {
-        return visitor.visit (this, ctx);
+
+    public Object accept(final ICONSTANTVisitor visitor, final Object ctx) {
+        return visitor.visit(this, ctx);
     }
-     
-    public String toString ()
-    {
-        return "CONSTANT_NameAndType: [name_index = " + m_name_index + ", descriptor_index = " + m_descriptor_index + ']';
+
+    public String toString() {
+        return "CONSTANT_NameAndType: [name_index = " + m_name_index + ", descriptor_index = " + m_descriptor_index
+                + ']';
     }
-    
+
     // Cloneable: inherited clone() is Ok
-    
+
     // IClassFormatOutput:
-    
-    public void writeInClassFormat (final UDataOutputStream out) throws IOException
-    {
-        super.writeInClassFormat (out);
-        
-        out.writeU2 (m_name_index);
-        out.writeU2 (m_descriptor_index);
+
+    public void writeInClassFormat(final UDataOutputStream out) throws IOException {
+        super.writeInClassFormat(out);
+
+        out.writeU2(m_name_index);
+        out.writeU2(m_descriptor_index);
     }
-    
+
     // protected: .............................................................
 
-    
-    protected CONSTANT_NameAndType_info (final UDataInputStream bytes) throws IOException
-    {
-        m_name_index = bytes.readU2 ();
-        m_descriptor_index = bytes.readU2 ();
+    protected CONSTANT_NameAndType_info(final UDataInputStream bytes) throws IOException {
+        m_name_index = bytes.readU2();
+        m_descriptor_index = bytes.readU2();
     }
-    
+
     // package: ...............................................................
 
     // private: ...............................................................

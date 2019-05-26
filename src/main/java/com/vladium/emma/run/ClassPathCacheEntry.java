@@ -14,33 +14,28 @@ import com.vladium.util.asserts.$assert;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class ClassPathCacheEntry
-{
+public final class ClassPathCacheEntry {
     // public: ................................................................
-    
+
     // getters not provided [the fields are final]
-    
-    public final byte [] m_bytes;
+
+    public final byte[] m_bytes;
     public final String m_srcURL; // a String is more compact that java.net.URL
-    
-    
-    public ClassPathCacheEntry (final byte [] bytes, final String srcURL)
-    {
-        if ($assert.ENABLED)
-        {
-            $assert.ASSERT (bytes != null, "bytes = null");
-            $assert.ASSERT (srcURL != null, "srcURL = null");
+
+    public ClassPathCacheEntry(final byte[] bytes, final String srcURL) {
+        if ($assert.ENABLED) {
+            $assert.ASSERT(bytes != null, "bytes = null");
+            $assert.ASSERT(srcURL != null, "srcURL = null");
         }
-        
+
         m_bytes = bytes;
         m_srcURL = srcURL;
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
 
 } // end of class

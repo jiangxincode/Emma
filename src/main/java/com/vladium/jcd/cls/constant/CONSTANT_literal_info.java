@@ -10,8 +10,8 @@ package com.vladium.jcd.cls.constant;
 
 // ----------------------------------------------------------------------------
 /**
- * Abstract base for all CONSTANT_XXX_info structures representing literal values
- * in the constant pool.
+ * Abstract base for all CONSTANT_XXX_info structures representing literal
+ * values in the constant pool.
  * 
  * @see CONSTANT_Integer_info
  * @see CONSTANT_Long_info
@@ -21,20 +21,16 @@ package com.vladium.jcd.cls.constant;
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-abstract class CONSTANT_literal_info extends CONSTANT_info
-{
+public abstract class CONSTANT_literal_info extends CONSTANT_info {
     // public: ................................................................
-    
+
     // Cloneable: inherited clone() is Ok
-    
+
     // protected: .............................................................
 
-    
-    protected CONSTANT_literal_info ()
-    {
+    protected CONSTANT_literal_info() {
     }
-    
+
     // package: ...............................................................
 
     // private: ...............................................................

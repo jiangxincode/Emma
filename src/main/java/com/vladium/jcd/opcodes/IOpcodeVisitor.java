@@ -12,12 +12,10 @@ package com.vladium.jcd.opcodes;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IOpcodeVisitor
-{
+public interface IOpcodeVisitor {
     // public: ................................................................
-    
-    void visit (int opcode, boolean wide, int offset, Object ctx);
+
+    void visit(int opcode, boolean wide, int offset, Object ctx);
 
 } // end of interface
 // ----------------------------------------------------------------------------

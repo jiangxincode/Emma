@@ -20,63 +20,52 @@ import java.util.TreeSet;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-class XProperties extends Properties
-{
+public class XProperties extends Properties {
     // public: ................................................................
-    
-    
-    public XProperties ()
-    {
+
+    public XProperties() {
     }
-    
-    public XProperties (final Properties base)
-    {
-        super (base);
+
+    public XProperties(final Properties base) {
+        super(base);
     }
-    
-    public void list (final PrintStream out)
-    {
-        final Set /* String */ _propertyNames = new TreeSet ();
-        
+
+    public void list(final PrintStream out) {
+        final Set /* String */ _propertyNames = new TreeSet();
+
         // note: must use propertyNames() because that is the only method that recurses
-        for (Enumeration propertyNames = propertyNames (); propertyNames.hasMoreElements (); )
-        {
-            _propertyNames.add (propertyNames.nextElement ());
+        for (Enumeration propertyNames = propertyNames(); propertyNames.hasMoreElements();) {
+            _propertyNames.add(propertyNames.nextElement());
         }
-        
-        for (Iterator i = _propertyNames.iterator (); i.hasNext (); )
-        {
-            final String n = (String) i.next ();
-            final String v = getProperty (n);
-            
-            out.println (n + ":\t[" + v + "]");
+
+        for (Iterator i = _propertyNames.iterator(); i.hasNext();) {
+            final String n = (String) i.next();
+            final String v = getProperty(n);
+
+            out.println(n + ":\t[" + v + "]");
         }
     }
-    
-    public void list (final PrintWriter out)
-    {
-        final Set /* String */ _propertyNames = new TreeSet ();
-        
+
+    public void list(final PrintWriter out) {
+        final Set /* String */ _propertyNames = new TreeSet();
+
         // note: must use propertyNames() because that is the only method that recurses
-        for (Enumeration propertyNames = propertyNames (); propertyNames.hasMoreElements (); )
-        {
-            _propertyNames.add (propertyNames.nextElement ());
+        for (Enumeration propertyNames = propertyNames(); propertyNames.hasMoreElements();) {
+            _propertyNames.add(propertyNames.nextElement());
         }
-        
-        for (Iterator i = _propertyNames.iterator (); i.hasNext (); )
-        {
-            final String n = (String) i.next ();
-            final String v = getProperty (n);
-            
-            out.println (n + ":\t[" + v + "]");
+
+        for (Iterator i = _propertyNames.iterator(); i.hasNext();) {
+            final String n = (String) i.next();
+            final String v = getProperty(n);
+
+            out.println(n + ":\t[" + v + "]");
         }
     }
-    
+
     // protected: .............................................................
-    
+
     // package: ...............................................................
-    
+
     // private: ...............................................................
 
 } // end of class

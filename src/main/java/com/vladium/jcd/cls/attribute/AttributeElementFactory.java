@@ -7,30 +7,26 @@
  * $Id: AttributeElementFactory.java,v 1.1.1.1 2004/05/09 16:57:47 vlad_r Exp $
  */
 package com.vladium.jcd.cls.attribute;
- 
+
 // ----------------------------------------------------------------------------
 /**
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-abstract class AttributeElementFactory
-{
+public abstract class AttributeElementFactory {
     // public: ................................................................
-    
-    public static IExceptionHandlerTable newExceptionHandlerTable (final int capacity)
-    {
-        return new ExceptionHandlerTable (capacity);
+
+    public static IExceptionHandlerTable newExceptionHandlerTable(final int capacity) {
+        return new ExceptionHandlerTable(capacity);
     }
-    
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
-    private AttributeElementFactory () {} // prevent subclassing
+
+    private AttributeElementFactory() {
+    } // prevent subclassing
 
 } // end of class
 // ----------------------------------------------------------------------------

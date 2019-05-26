@@ -14,28 +14,28 @@ import java.util.Iterator;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IMetaData extends IMergeable
-{
+public interface IMetaData extends IMergeable {
     // public: ................................................................
-    
-    Object lock ();
-    
-    IMetaData shallowCopy ();
-    
-    CoverageOptions getOptions ();
-    
-    int size ();
-    boolean hasSrcFileData ();
-    boolean hasLineNumberData ();
-    
+
+    Object lock();
+
+    IMetaData shallowCopy();
+
+    CoverageOptions getOptions();
+
+    int size();
+
+    boolean hasSrcFileData();
+
+    boolean hasLineNumberData();
+
 //    boolean hasDescriptor (ClassDescriptor cls);
-    boolean hasDescriptor (String classVMName);
-    
-    Iterator /* ClassDescripor */ iterator ();
-    
-    //void setImmutable (); // TODO: this only disables add(); rename
-    boolean add (ClassDescriptor cls, boolean overwrite);    
+    boolean hasDescriptor(String classVMName);
+
+    Iterator /* ClassDescripor */ iterator();
+
+    // void setImmutable (); // TODO: this only disables add(); rename
+    boolean add(ClassDescriptor cls, boolean overwrite);
 
 } // end of interface
 // ----------------------------------------------------------------------------

@@ -18,23 +18,18 @@ import com.vladium.jcd.lib.UDataOutputStream;
 /**
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-abstract class ClassWriter
-{
+public abstract class ClassWriter {
     // public: ................................................................
-    
 
-    public static void writeClassTable (final ClassDef classTable, final OutputStream out)
-        throws IOException
-    {
-        classTable.writeInClassFormat (new UDataOutputStream (out));
+    public static void writeClassTable(final ClassDef classTable, final OutputStream out) throws IOException {
+        classTable.writeInClassFormat(new UDataOutputStream(out));
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
 
     // private: ...............................................................
-    
+
 } // end of class
 // ----------------------------------------------------------------------------

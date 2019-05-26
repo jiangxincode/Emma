@@ -12,19 +12,19 @@ package com.vladium.emma.report.html.doc;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IElementList extends IContent
-{
+public interface IElementList extends IContent {
     // public: ................................................................
-    
-    IElementList add (IContent content);
-    IElementList add (int index, IContent content);
-    int size (); // element count 
-    
+
+    IElementList add(IContent content);
+
+    IElementList add(int index, IContent content);
+
+    int size(); // element count
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
 
 } // end of class

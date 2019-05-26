@@ -14,17 +14,15 @@ import java.io.Serializable;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IMergeable extends Serializable
-{
+public interface IMergeable extends Serializable {
     // public: ................................................................
-    
-    boolean isEmpty ();
-    
+
+    boolean isEmpty();
+
     /**
-     * Caller must always switch to the returned handle. 
+     * Caller must always switch to the returned handle.
      */
-    IMergeable merge (IMergeable data);
+    IMergeable merge(IMergeable data);
 
 } // end of interface
 // ----------------------------------------------------------------------------

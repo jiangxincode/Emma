@@ -14,81 +14,73 @@ import com.vladium.util.exception.AbstractException;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-class EMMAException extends AbstractException
-{
+public class EMMAException extends AbstractException {
     // public: ................................................................
 
     /**
      * Constructs an exception with null message and null cause.
-     */    
-    public EMMAException ()
-    {
+     */
+    public EMMAException() {
     }
-    
+
     /**
      * Constructs an exception with given error message/code and null cause.
      *
      * @param message the detail message [can be null]
      */
-    public EMMAException (final String message)
-    {
-        super (message);
+    public EMMAException(final String message) {
+        super(message);
     }
-    
+
     /**
      * Constructs an exception with given error message/code and null cause.
-     *   
-     * @param message the detail message [can be null]
+     * 
+     * @param message   the detail message [can be null]
      * @param arguments message format parameters [can be null or empty]
      *
      * @see java.text.MessageFormat
      */
-    public EMMAException (final String message, final Object [] arguments)
-    {
-        super (message, arguments);
+    public EMMAException(final String message, final Object[] arguments) {
+        super(message, arguments);
     }
-    
+
     /**
      * Constructs an exception with null error message/code and given cause.
      *
      * @param cause the cause [nested exception] [can be null]
      */
-    public EMMAException (final Throwable cause)
-    {
-        super (cause);
+    public EMMAException(final Throwable cause) {
+        super(cause);
     }
-    
+
     /**
      * Constructs an exception with given error message/code and given cause.
      *
      * @param message the detail message [can be null]
-     * @param cause the cause [nested exception] [can be null]
+     * @param cause   the cause [nested exception] [can be null]
      */
-    public EMMAException (final String message, final Throwable cause)
-    {
-        super (message, cause);
+    public EMMAException(final String message, final Throwable cause) {
+        super(message, cause);
     }
-    
+
     /**
      * Constructs an exception with given error message/code and given cause.
      *
-     * @param message the detail message [can be null]
+     * @param message   the detail message [can be null]
      * @param arguments message format parameters [can be null or empty]
-     * @param cause the cause [nested exception] [can be null]
+     * @param cause     the cause [nested exception] [can be null]
      *
      * @see java.text.MessageFormat
      */
-    public EMMAException (final String message, final Object [] arguments, final Throwable cause)
-    {
-        super (message, arguments, cause);
+    public EMMAException(final String message, final Object[] arguments, final Throwable cause) {
+        super(message, arguments, cause);
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
 
     // private: ...............................................................
-    
+
 } // end of class
 // ----------------------------------------------------------------------------

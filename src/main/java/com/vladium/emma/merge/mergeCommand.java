@@ -21,150 +21,126 @@ import com.vladium.emma.EMMARuntimeException;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class mergeCommand extends Command
-{
+public final class mergeCommand extends Command {
     // public: ................................................................
 
-    public mergeCommand (final String usageToolName, final String [] args)
-    {
-        super (usageToolName, args);
+    public mergeCommand(final String usageToolName, final String[] args) {
+        super(usageToolName, args);
     }
 
-    public synchronized void run ()
-    {
+    public synchronized void run() {
         ClassLoader loader;
-        try
-        {
-            loader = ClassLoaderResolver.getClassLoader ();
+        try {
+            loader = ClassLoaderResolver.getClassLoader();
+        } catch (Throwable t) {
+            loader = getClass().getClassLoader();
         }
-        catch (Throwable t)
-        {
-            loader = getClass ().getClassLoader ();
-        }
-        
-        try
-        {
+
+        try {
             // process 'args':
             {
-                final IOptsParser parser = getOptParser (loader);
-                final IOptsParser.IOpts parsedopts = parser.parse (m_args);
-                
-                final int usageRequestLevel = parsedopts.usageRequestLevel ();
-                
+                final IOptsParser parser = getOptParser(loader);
+                final IOptsParser.IOpts parsedopts = parser.parse(m_args);
+
+                final int usageRequestLevel = parsedopts.usageRequestLevel();
+
                 // check if usage is requested before checking args parse errors etc:
 
-                if (usageRequestLevel > 0)
-                {
-                    usageexit (null, parser, usageRequestLevel);
+                if (usageRequestLevel > 0) {
+                    usageexit(null, parser, usageRequestLevel);
                     return;
                 }
-                
-                final IOptsParser.IOpt [] opts = parsedopts.getOpts ();
-                
+
+                final IOptsParser.IOpt[] opts = parsedopts.getOpts();
+
                 if (opts == null) // this means there were args parsing errors
                 {
-                    parsedopts.error (m_out, STDOUT_WIDTH);
-                    usageexit (null, parser, IOptsParser.SHORT_USAGE);
+                    parsedopts.error(m_out, STDOUT_WIDTH);
+                    usageexit(null, parser, IOptsParser.SHORT_USAGE);
                     return;
                 }
-                
+
                 // [assertion: args parsed Ok]
-                
+
                 // version flag is handled as a special case:
-                
-                if (parsedopts.hasArg ("v"))
-                {
-                    usageexit (null, null, usageRequestLevel);
+
+                if (parsedopts.hasArg("v")) {
+                    usageexit(null, null, usageRequestLevel);
                     return;
                 }
-                
+
                 // process parsed args:
 
-                try
-                {
-                    for (int o = 0; o < opts.length; ++ o)
-                    {
-                        final IOptsParser.IOpt opt = opts [o];
-                        final String on = opt.getCanonicalName ();
-                        
-                        if (! processOpt (opt))
-                        {
-                            if ("in".equals (on))
-                            {
-                                m_datapath = getListOptValue (opt, PATH_DELIMITERS, true);
-                            }
-                            else if ("out".equals (on))
-                            {
-                                m_outFileName = opt.getFirstValue ();
+                try {
+                    for (int o = 0; o < opts.length; ++o) {
+                        final IOptsParser.IOpt opt = opts[o];
+                        final String on = opt.getCanonicalName();
+
+                        if (!processOpt(opt)) {
+                            if ("in".equals(on)) {
+                                m_datapath = getListOptValue(opt, PATH_DELIMITERS, true);
+                            } else if ("out".equals(on)) {
+                                m_outFileName = opt.getFirstValue();
                             }
                         }
                     }
 
                     // process prefixed opts:
-                    
-                    processCmdPropertyOverrides (parsedopts);
-                    
+
+                    processCmdPropertyOverrides(parsedopts);
+
                     // user '-props' file property overrides:
-                    
-                    if (! processFilePropertyOverrides ()) return;
+
+                    if (!processFilePropertyOverrides())
+                        return;
+                } catch (IOException ioe) {
+                    throw new EMMARuntimeException(IAppErrorCodes.ARGS_IO_FAILURE, ioe);
                 }
-                catch (IOException ioe)
-                {
-                    throw new EMMARuntimeException (IAppErrorCodes.ARGS_IO_FAILURE, ioe);
-                }
-                
+
                 // handle cmd line-level defaults:
                 {
                 }
             }
-            
+
             // run the reporter:
             {
-                final MergeProcessor processor = MergeProcessor.create ();
-                processor.setAppName (IAppConstants.APP_NAME); // for log prefixing
-                
-                processor.setDataPath (m_datapath);
-                processor.setSessionOutFile (m_outFileName);
-                processor.setPropertyOverrides (m_propertyOverrides);
-                
-                processor.run ();
+                final MergeProcessor processor = MergeProcessor.create();
+                processor.setAppName(IAppConstants.APP_NAME); // for log prefixing
+
+                processor.setDataPath(m_datapath);
+                processor.setSessionOutFile(m_outFileName);
+                processor.setPropertyOverrides(m_propertyOverrides);
+
+                processor.run();
             }
-        }
-        catch (EMMARuntimeException yre)
-        {
+        } catch (EMMARuntimeException yre) {
             // TODO: see below
-            
-            exit (true, yre.getMessage (), yre, RC_UNEXPECTED); // does not return
+
+            exit(true, yre.getMessage(), yre, RC_UNEXPECTED); // does not return
             return;
-        }
-        catch (Throwable t)
-        {
+        } catch (Throwable t) {
             // TODO: embed: OS/JVM fingerprint, build #, etc
             // TODO: save stack trace in a file and prompt user to send it to ...
-            
-            exit (true, "unexpected failure: ", t, RC_UNEXPECTED); // does not return
+
+            exit(true, "unexpected failure: ", t, RC_UNEXPECTED); // does not return
             return;
         }
 
-        exit (false, null, null, RC_OK);
-    }    
-    
+        exit(false, null, null, RC_OK);
+    }
+
     // protected: .............................................................
 
-
-    protected String usageArgsMsg ()
-    {
+    protected String usageArgsMsg() {
         return "[options]";
     }
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
-    private String [] m_datapath; // list of data files, not a real path
+
+    private String[] m_datapath; // list of data files, not a real path
     private String m_outFileName;
-    
+
 } // end of class
 // ----------------------------------------------------------------------------

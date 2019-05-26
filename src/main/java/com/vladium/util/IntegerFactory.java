@@ -12,42 +12,36 @@ package com.vladium.util;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-abstract class IntegerFactory
-{
+public abstract class IntegerFactory {
     // public: ................................................................
-    
+
     // TODO: use thread-local arena pattern to avoid synchronization ?
-    
-    public static Integer getInteger (final int value)
-    {
-        synchronized (s_values)
-        {
-            final Object _result = s_values.get (value);
-            
-            if (_result == null)
-            {
-                final Integer result = new Integer (value);
-                s_values.put (value, result);
-                
-                return result; 
+
+    public static Integer getInteger(final int value) {
+        synchronized (s_values) {
+            final Object _result = s_values.get(value);
+
+            if (_result == null) {
+                final Integer result = new Integer(value);
+                s_values.put(value, result);
+
+                return result;
             }
-            
+
             return (Integer) _result;
         }
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
-    private IntegerFactory () {} // prevent subclassing
-    
-    
-    private static final IntObjectMap s_values = new IntObjectMap (16661);
+
+    private IntegerFactory() {
+    } // prevent subclassing
+
+    private static final IntObjectMap s_values = new IntObjectMap(16661);
 
 } // end of class
 // ----------------------------------------------------------------------------

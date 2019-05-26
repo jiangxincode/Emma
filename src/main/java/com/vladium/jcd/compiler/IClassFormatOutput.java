@@ -19,12 +19,10 @@ import com.vladium.jcd.lib.UDataOutputStream;
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-interface IClassFormatOutput
-{
+public interface IClassFormatOutput {
     // public: ................................................................
 
-    void writeInClassFormat (UDataOutputStream out) throws IOException;
-    
+    void writeInClassFormat(UDataOutputStream out) throws IOException;
+
 } // end of interface
 // ----------------------------------------------------------------------------

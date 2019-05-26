@@ -12,15 +12,13 @@ package com.vladium.emma.report;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public interface IReportDataView
-{
+public interface IReportDataView {
     // public: ................................................................
-    
 
-    int HIER_CLS_VIEW   = 0;
-    int HIER_SRC_VIEW   = 1;   
-    
-    IItem getRoot ();
+    int HIER_CLS_VIEW = 0;
+    int HIER_SRC_VIEW = 1;
+
+    IItem getRoot();
 
 } // end of interface
 // ----------------------------------------------------------------------------

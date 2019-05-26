@@ -12,17 +12,20 @@ package com.vladium.jcd.cls;
 /**
  * @author (C) 2001, Vlad Roubtsov
  */
-public interface IClassDefVisitor
-{
+public interface IClassDefVisitor {
     // public: ................................................................
-    
-    Object visit (ClassDef cls, Object ctx);
-    
-    Object visit (IConstantCollection constants, Object ctx);
-    Object visit (IInterfaceCollection interfaces, Object ctx);
-    Object visit (IFieldCollection fields, Object ctx);
-    Object visit (IMethodCollection methods, Object ctx);
-    Object visit (IAttributeCollection attributes, Object ctx);
+
+    Object visit(ClassDef cls, Object ctx);
+
+    Object visit(IConstantCollection constants, Object ctx);
+
+    Object visit(IInterfaceCollection interfaces, Object ctx);
+
+    Object visit(IFieldCollection fields, Object ctx);
+
+    Object visit(IMethodCollection methods, Object ctx);
+
+    Object visit(IAttributeCollection attributes, Object ctx);
 
 } // end of interface
 // ----------------------------------------------------------------------------

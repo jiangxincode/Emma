@@ -18,61 +18,51 @@ import com.vladium.util.Property;
 /**
  * @author Vlad Roubtsov, (C) 2004
  */
-public
-abstract class CoverageOptionsFactory
-{
+public abstract class CoverageOptionsFactory {
     // public: ................................................................
 
-    public static CoverageOptions create (final Properties properties)
-    {
-        final boolean excludeEmptyClasses =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_EXCLUDE_EMPTY_CLASSES,
-                                                        InstrProcessor.DEFAULT_EXCLUDE_EMPTY_CLASSES));
-        
-        final boolean excludeSyntheticMethods =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_EXCLUDE_SYNTHETIC_METHODS,
-                                                        InstrProcessor.DEFAULT_EXCLUDE_SYNTHETIC_METHODS));
-                                                                        
-        final boolean excludeBridgeMethods =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_EXCLUDE_BRIDGE_METHODS,
-                                                        InstrProcessor.DEFAULT_EXCLUDE_BRIDGE_METHODS));
-                                                                                            
-        final boolean doSUIDCompensaton =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_DO_SUID_COMPENSATION,
-                                                        InstrProcessor.DEFAULT_DO_SUID_COMPENSATION));
-        
-        return new CoverageOptions (excludeEmptyClasses, excludeSyntheticMethods, excludeBridgeMethods, doSUIDCompensaton);
+    public static CoverageOptions create(final Properties properties) {
+        final boolean excludeEmptyClasses = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_EXCLUDE_EMPTY_CLASSES, InstrProcessor.DEFAULT_EXCLUDE_EMPTY_CLASSES));
+
+        final boolean excludeSyntheticMethods = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_EXCLUDE_SYNTHETIC_METHODS, InstrProcessor.DEFAULT_EXCLUDE_SYNTHETIC_METHODS));
+
+        final boolean excludeBridgeMethods = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_EXCLUDE_BRIDGE_METHODS, InstrProcessor.DEFAULT_EXCLUDE_BRIDGE_METHODS));
+
+        final boolean doSUIDCompensaton = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_DO_SUID_COMPENSATION, InstrProcessor.DEFAULT_DO_SUID_COMPENSATION));
+
+        return new CoverageOptions(excludeEmptyClasses, excludeSyntheticMethods, excludeBridgeMethods,
+                doSUIDCompensaton);
     }
-    
-    public static CoverageOptions create (final IProperties properties)
-    {
-        final boolean excludeEmptyClasses =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_EXCLUDE_EMPTY_CLASSES,
-                                                        InstrProcessor.DEFAULT_EXCLUDE_EMPTY_CLASSES));
-        
-        final boolean excludeSyntheticMethods =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_EXCLUDE_SYNTHETIC_METHODS,
-                                                        InstrProcessor.DEFAULT_EXCLUDE_SYNTHETIC_METHODS));
-        
-        final boolean excludeBridgeMethods =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_EXCLUDE_BRIDGE_METHODS,
-                                                        InstrProcessor.DEFAULT_EXCLUDE_BRIDGE_METHODS));
-                                                                                         
-        final boolean doSUIDCompensaton =
-            Property.toBoolean (properties.getProperty (InstrProcessor.PROPERTY_DO_SUID_COMPENSATION,
-                                                        InstrProcessor.DEFAULT_DO_SUID_COMPENSATION));
-        
-        return new CoverageOptions (excludeEmptyClasses, excludeSyntheticMethods, excludeBridgeMethods, doSUIDCompensaton);
+
+    public static CoverageOptions create(final IProperties properties) {
+        final boolean excludeEmptyClasses = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_EXCLUDE_EMPTY_CLASSES, InstrProcessor.DEFAULT_EXCLUDE_EMPTY_CLASSES));
+
+        final boolean excludeSyntheticMethods = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_EXCLUDE_SYNTHETIC_METHODS, InstrProcessor.DEFAULT_EXCLUDE_SYNTHETIC_METHODS));
+
+        final boolean excludeBridgeMethods = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_EXCLUDE_BRIDGE_METHODS, InstrProcessor.DEFAULT_EXCLUDE_BRIDGE_METHODS));
+
+        final boolean doSUIDCompensaton = Property.toBoolean(properties.getProperty(
+                InstrProcessor.PROPERTY_DO_SUID_COMPENSATION, InstrProcessor.DEFAULT_DO_SUID_COMPENSATION));
+
+        return new CoverageOptions(excludeEmptyClasses, excludeSyntheticMethods, excludeBridgeMethods,
+                doSUIDCompensaton);
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
 
-
-    private CoverageOptionsFactory () {} // this class is not extendible
+    private CoverageOptionsFactory() {
+    } // this class is not extendible
 
 } // end of class
 // ----------------------------------------------------------------------------

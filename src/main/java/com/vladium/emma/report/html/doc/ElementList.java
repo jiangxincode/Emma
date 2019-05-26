@@ -18,59 +18,46 @@ import java.util.List;
  * 
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class ElementList implements IElementList
-{
+public final class ElementList implements IElementList {
     // public: ................................................................
 
-
-    public ElementList ()
-    {
-        m_contents = new ArrayList ();
+    public ElementList() {
+        m_contents = new ArrayList();
     }
 
-    
-    public void emit (final HTMLWriter out)
-    {
-        for (Iterator c = m_contents.iterator (); c.hasNext (); )
-        {
-            final IContent content = (IContent) c.next ();
-            content.emit (out);
+    public void emit(final HTMLWriter out) {
+        for (Iterator c = m_contents.iterator(); c.hasNext();) {
+            final IContent content = (IContent) c.next();
+            content.emit(out);
         }
     }
-                
-    public IElementList add (final IContent content)
-    {
-        if (content != null)
-        {
-            m_contents.add (content);
+
+    public IElementList add(final IContent content) {
+        if (content != null) {
+            m_contents.add(content);
         }
-        
+
         return this;
     }
-    
-    public IElementList add (final int index, final IContent content)
-    {
-        if (content != null)
-        {
-            m_contents.add (index, content);
+
+    public IElementList add(final int index, final IContent content) {
+        if (content != null) {
+            m_contents.add(index, content);
         }
-        
+
         return this;
     }
-    
-    public int size ()
-    {
-        return m_contents.size ();
+
+    public int size() {
+        return m_contents.size();
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
+
     private final List /* Content */ m_contents;
 
 } // end of class

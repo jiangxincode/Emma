@@ -17,111 +17,96 @@ import java.util.Enumeration;
 /**
  * A static API that can be used as a drop-in replacement for
  * java.lang.ClassLoader API (the class/resource loading part). This
- * implementation is merely a wrapper around ClassLoaderResolverget.ClassLoader()
- * method.
+ * implementation is merely a wrapper around
+ * ClassLoaderResolverget.ClassLoader() method.
  * 
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-abstract class ResourceLoader
-{
+public abstract class ResourceLoader {
     // public: ................................................................
-    
+
     /**
      * @see java.lang.ClassLoader#loadClass(java.lang.String)
      */
-    public static Class loadClass (final String name)
-        throws ClassNotFoundException
-    {
-        final Class caller = ClassLoaderResolver.getCallerClass (1);
-        final ClassLoader loader = ClassLoaderResolver.getClassLoader (caller);
-        
-        return Class.forName (name, false, loader);
+    public static Class loadClass(final String name) throws ClassNotFoundException {
+        final Class caller = ClassLoaderResolver.getCallerClass(1);
+        final ClassLoader loader = ClassLoaderResolver.getClassLoader(caller);
+
+        return Class.forName(name, false, loader);
     }
 
     /**
      * @see java.lang.ClassLoader#getResource(java.lang.String)
-     */    
-    public static URL getResource (final String name)
-    {
-        final Class caller = ClassLoaderResolver.getCallerClass (1);
-        final ClassLoader loader = ClassLoaderResolver.getClassLoader (caller);
-        
+     */
+    public static URL getResource(final String name) {
+        final Class caller = ClassLoaderResolver.getCallerClass(1);
+        final ClassLoader loader = ClassLoaderResolver.getClassLoader(caller);
+
         if (loader != null)
-            return loader.getResource (name);
+            return loader.getResource(name);
         else
-            return ClassLoader.getSystemResource (name);
+            return ClassLoader.getSystemResource(name);
     }
 
     /**
      * @see java.lang.ClassLoader#getResourceAsStream(java.lang.String)
-     */        
-    public static InputStream getResourceAsStream (final String name)
-    {
-        final Class caller = ClassLoaderResolver.getCallerClass (1);
-        final ClassLoader loader = ClassLoaderResolver.getClassLoader (caller);
-        
+     */
+    public static InputStream getResourceAsStream(final String name) {
+        final Class caller = ClassLoaderResolver.getCallerClass(1);
+        final ClassLoader loader = ClassLoaderResolver.getClassLoader(caller);
+
         if (loader != null)
-            return loader.getResourceAsStream (name);
+            return loader.getResourceAsStream(name);
         else
-            return ClassLoader.getSystemResourceAsStream (name);
+            return ClassLoader.getSystemResourceAsStream(name);
     }
 
     /**
      * @see java.lang.ClassLoader#getResources(java.lang.String)
-     */            
-    public static Enumeration getResources (final String name)
-        throws IOException
-    {
-        final Class caller = ClassLoaderResolver.getCallerClass (1);
-        final ClassLoader loader = ClassLoaderResolver.getClassLoader (caller);
-        
+     */
+    public static Enumeration getResources(final String name) throws IOException {
+        final Class caller = ClassLoaderResolver.getCallerClass(1);
+        final ClassLoader loader = ClassLoaderResolver.getClassLoader(caller);
+
         if (loader != null)
-            return loader.getResources (name);
+            return loader.getResources(name);
         else
-            return ClassLoader.getSystemResources (name);
-    }
-    
-    
-    public static Class loadClass (final String name, final ClassLoader loader)
-        throws ClassNotFoundException
-    {
-        return Class.forName (name, false, loader != null ? loader : ClassLoader.getSystemClassLoader ());
+            return ClassLoader.getSystemResources(name);
     }
 
-    public static URL getResource (final String name, final ClassLoader loader)
-    {
-        if (loader != null)
-            return loader.getResource (name);
-        else
-            return ClassLoader.getSystemResource (name);
+    public static Class loadClass(final String name, final ClassLoader loader) throws ClassNotFoundException {
+        return Class.forName(name, false, loader != null ? loader : ClassLoader.getSystemClassLoader());
     }
 
-    public static InputStream getResourceAsStream (final String name, final ClassLoader loader)
-    {
+    public static URL getResource(final String name, final ClassLoader loader) {
         if (loader != null)
-            return loader.getResourceAsStream (name);
+            return loader.getResource(name);
         else
-            return ClassLoader.getSystemResourceAsStream (name);
+            return ClassLoader.getSystemResource(name);
     }
 
-    public static Enumeration getResources (final String name, final ClassLoader loader)
-        throws IOException
-    {
+    public static InputStream getResourceAsStream(final String name, final ClassLoader loader) {
         if (loader != null)
-            return loader.getResources (name);
+            return loader.getResourceAsStream(name);
         else
-            return ClassLoader.getSystemResources (name);
+            return ClassLoader.getSystemResourceAsStream(name);
     }
-    
+
+    public static Enumeration getResources(final String name, final ClassLoader loader) throws IOException {
+        if (loader != null)
+            return loader.getResources(name);
+        else
+            return ClassLoader.getSystemResources(name);
+    }
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
-    private ResourceLoader () {} // prevent subclassing
+
+    private ResourceLoader() {
+    } // prevent subclassing
 
 } // end of class
 // ----------------------------------------------------------------------------

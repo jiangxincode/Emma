@@ -14,35 +14,29 @@ import com.vladium.util.Strings;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public 
-final class Text implements IContent
-{
+public final class Text implements IContent {
     // public: ................................................................
 
-    public Text (final String text, final boolean nbsp)
-    {
+    public Text(final String text, final boolean nbsp) {
         m_text = text;
         m_nbsp = nbsp;
     }
-    
-    public void emit (final HTMLWriter out)
-    {
-        if (m_text != null)
-        {
+
+    public void emit(final HTMLWriter out) {
+        if (m_text != null) {
             if (m_nbsp)
-                out.write (Strings.HTMLEscapeSP (m_text));
+                out.write(Strings.HTMLEscapeSP(m_text));
             else
-                out.write (Strings.HTMLEscape (m_text));
+                out.write(Strings.HTMLEscape(m_text));
         }
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
+
     private final String m_text;
     private final boolean m_nbsp;
 

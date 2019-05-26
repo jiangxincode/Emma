@@ -12,41 +12,33 @@ package com.vladium.jcd.cls;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-abstract class ElementFactory
-{
+public abstract class ElementFactory {
     // public: ................................................................
-    
-    
-    public static IAttributeCollection newAttributeCollection (final int capacity)
-    {
-        return new AttributeCollection (capacity);
+
+    public static IAttributeCollection newAttributeCollection(final int capacity) {
+        return new AttributeCollection(capacity);
     }
 
-    public static IConstantCollection newConstantCollection (final int capacity)
-    {
-        return new ConstantCollection (capacity);
+    public static IConstantCollection newConstantCollection(final int capacity) {
+        return new ConstantCollection(capacity);
     }
 
-    public static IFieldCollection newFieldCollection (final int capacity)
-    {
-        return new FieldCollection (capacity);
+    public static IFieldCollection newFieldCollection(final int capacity) {
+        return new FieldCollection(capacity);
     }
 
-    public static IInterfaceCollection newInterfaceCollection (final int capacity)
-    {
-        return new InterfaceCollection (capacity);
+    public static IInterfaceCollection newInterfaceCollection(final int capacity) {
+        return new InterfaceCollection(capacity);
     }
 
-    public static IMethodCollection newMethodCollection (final int capacity)
-    {
-        return new MethodCollection (capacity);
+    public static IMethodCollection newMethodCollection(final int capacity) {
+        return new MethodCollection(capacity);
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
 
 } // end of class

@@ -14,36 +14,28 @@ import java.io.OutputStream;
 
 // ----------------------------------------------------------------------------
 /**
- * A trivial extension to java.io.DataInputStream to provide methods for
- * writing unsigned 16- and 32-bit integers with simple mnemonics. It uses
+ * A trivial extension to java.io.DataInputStream to provide methods for writing
+ * unsigned 16- and 32-bit integers with simple mnemonics. It uses
  * correspondingly wider native types to preserve the full range of the unsigned
  * types.
  * 
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-final class UDataOutputStream extends DataOutputStream
-{
+public final class UDataOutputStream extends DataOutputStream {
     // public: ................................................................
 
-    
-    public UDataOutputStream (final OutputStream _out)
-    {
-        super (_out);
+    public UDataOutputStream(final OutputStream _out) {
+        super(_out);
     }
-    
-    
-    public final void writeU2 (final int uint) throws IOException
-    {
-        writeShort ((short) uint); // this narrowing cast is Ok
+
+    public final void writeU2(final int uint) throws IOException {
+        writeShort((short) uint); // this narrowing cast is Ok
     }
-    
-    
-    public final void writeU4 (final long ulong) throws IOException
-    {
-        writeInt ((int) ulong); // this narrowing cast is Ok
+
+    public final void writeU4(final long ulong) throws IOException {
+        writeInt((int) ulong); // this narrowing cast is Ok
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................

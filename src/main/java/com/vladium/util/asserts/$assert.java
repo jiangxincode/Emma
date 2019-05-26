@@ -12,49 +12,43 @@ package com.vladium.util.asserts;
 /**
  * @author Vlad Roubtsov, (C) 2001
  */
-public
-abstract class $assert
-{
+public abstract class $assert {
     // public: ................................................................
-    
-    
+
     // TODO: set to false for release
-    
+
     /**
      * Global compile time assertion flag.
      */
     public static final boolean ENABLED = false;
-    
+
     /**
      * 
      * @param condition
      * @param msg
      */
-    public static void ASSERT (final boolean condition, final String msg)
-    {
-        if (ENABLED)
-        {
-            if (! condition) throw new RuntimeException (msg);
+    public static void ASSERT(final boolean condition, final String msg) {
+        if (ENABLED) {
+            if (!condition)
+                throw new RuntimeException(msg);
         }
     }
-    
-    public static void ASSERT (final boolean condition)
-    {
-        if (ENABLED)
-        {
-            if (! condition) throw new RuntimeException ("ASSERTION FAILURE");
+
+    public static void ASSERT(final boolean condition) {
+        if (ENABLED) {
+            if (!condition)
+                throw new RuntimeException("ASSERTION FAILURE");
         }
     }
-    
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
-    private $assert () {} // prevent subclassing
+
+    private $assert() {
+    } // prevent subclassing
 
 } // end of class
 // ----------------------------------------------------------------------------

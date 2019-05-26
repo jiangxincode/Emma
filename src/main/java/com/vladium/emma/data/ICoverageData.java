@@ -12,40 +12,37 @@ package com.vladium.emma.data;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface ICoverageData extends IMergeable
-{
+public interface ICoverageData extends IMergeable {
     // public: ................................................................
-    
-    final class DataHolder
-    {
-        public DataHolder (final boolean [][] coverage, final long stamp)
-        {
+
+    final class DataHolder {
+        public DataHolder(final boolean[][] coverage, final long stamp) {
             m_coverage = coverage;
             m_stamp = stamp;
         }
-        
-        public final boolean [][] m_coverage;
+
+        public final boolean[][] m_coverage;
         public final long m_stamp;
-        
+
     } // end of nested class
-    
-    Object lock ();
-    
-    ICoverageData shallowCopy ();
-    
-    int size ();
-    
+
+    Object lock();
+
+    ICoverageData shallowCopy();
+
+    int size();
+
     /**
-     * can return null
-     * can return data holder with a different version stamp than cls.getStamp()
+     * can return null can return data holder with a different version stamp than
+     * cls.getStamp()
      */
-    DataHolder getCoverage (ClassDescriptor cls);
-    
-    //void setImmutable (); // TODO: this only disables addClass(), not coverage array updates; rename
-    void addClass (boolean [][] coverage, String classVMName, long stamp);
-    
-    void reset ();
+    DataHolder getCoverage(ClassDescriptor cls);
+
+    // void setImmutable (); // TODO: this only disables addClass(), not coverage
+    // array updates; rename
+    void addClass(boolean[][] coverage, String classVMName, long stamp);
+
+    void reset();
 
 } // end of interface
 // ----------------------------------------------------------------------------

@@ -18,64 +18,52 @@ import com.vladium.jcd.lib.UDataOutputStream;
  * 
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class BridgeAttribute_info extends Attribute_info
-{
+public final class BridgeAttribute_info extends Attribute_info {
     // public: ................................................................
-    
-    
-    public BridgeAttribute_info (final int attribute_name_index)
-    {
-        super (attribute_name_index, 0);
+
+    public BridgeAttribute_info(final int attribute_name_index) {
+        super(attribute_name_index, 0);
     }
-    
-    
-    public long length ()
-    {
+
+    public long length() {
         return 6;
     }
-    
+
     // Visitor:
-    
-    public void accept (final IAttributeVisitor visitor, final Object ctx)
-    {
-        visitor.visit (this, ctx);
+
+    public void accept(final IAttributeVisitor visitor, final Object ctx) {
+        visitor.visit(this, ctx);
     }
-    
-    public String toString ()
-    {
-        return "BridgeAttribute_info: [attribute_name_index = " + m_name_index + ", attribute_length = " + m_attribute_length + ']';
+
+    public String toString() {
+        return "BridgeAttribute_info: [attribute_name_index = " + m_name_index + ", attribute_length = "
+                + m_attribute_length + ']';
     }
-    
+
     // Cloneable:
-    
+
     /**
      * Performs a deep copy.
      */
-    public Object clone ()
-    {        
-        return super.clone ();    
+    public Object clone() {
+        return super.clone();
     }
-       
+
     // IClassFormatOutput:
-    
-    public void writeInClassFormat (final UDataOutputStream out) throws IOException
-    {
-        super.writeInClassFormat (out);
+
+    public void writeInClassFormat(final UDataOutputStream out) throws IOException {
+        super.writeInClassFormat(out);
     }
-    
+
     // protected: .............................................................
-    
+
     // package: ...............................................................
 
-
-    BridgeAttribute_info (final int attribute_name_index, final long attribute_length)
-    {
-        super (attribute_name_index, attribute_length);
+    BridgeAttribute_info(final int attribute_name_index, final long attribute_length) {
+        super(attribute_name_index, attribute_length);
     }
-    
+
     // private: ...............................................................
 
 } // end of class
 // ----------------------------------------------------------------------------
-

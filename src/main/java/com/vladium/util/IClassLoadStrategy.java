@@ -10,22 +10,20 @@ package com.vladium.util;
 
 // ----------------------------------------------------------------------------
 /**
- * The interface implemented by any classloader selection Strategy used
- * with {@link ClassLoaderResolver} API.
+ * The interface implemented by any classloader selection Strategy used with
+ * {@link ClassLoaderResolver} API.
  * 
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-interface IClassLoadStrategy
-{
+public interface IClassLoadStrategy {
     // public: ................................................................
-    
+
     /**
      * Selects a classloader based on a given load context.
      * 
      * @see ClassLoaderResolver#getClassLoader()
      */
-    ClassLoader getClassLoader (ClassLoadContext ctx);
+    ClassLoader getClassLoader(ClassLoadContext ctx);
 
 } // end of interface
 // ----------------------------------------------------------------------------

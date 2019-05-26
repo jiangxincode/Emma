@@ -12,11 +12,9 @@ package com.vladium.jcd.cls;
 /**
  * @author (C) 2001, Vlad Roubtsov
  */
-public
-interface IClassDefConstants
-{
+public interface IClassDefConstants {
     // public: ................................................................
-    
+
     String INIT_NAME = "<init>";
     String CLINIT_NAME = "<clinit>";
     String CLINIT_DESCRIPTOR = "()V";

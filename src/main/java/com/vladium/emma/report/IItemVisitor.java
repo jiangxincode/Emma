@@ -12,15 +12,18 @@ package com.vladium.emma.report;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public interface IItemVisitor
-{
+public interface IItemVisitor {
     // public: ................................................................
-    
-    Object visit (AllItem item, Object ctx);
-    Object visit (PackageItem item, Object ctx);
-    Object visit (SrcFileItem item, Object ctx);
-    Object visit (ClassItem item, Object ctx);
-    Object visit (MethodItem item, Object ctx);
+
+    Object visit(AllItem item, Object ctx);
+
+    Object visit(PackageItem item, Object ctx);
+
+    Object visit(SrcFileItem item, Object ctx);
+
+    Object visit(ClassItem item, Object ctx);
+
+    Object visit(MethodItem item, Object ctx);
 
 } // end of interface
 // ----------------------------------------------------------------------------

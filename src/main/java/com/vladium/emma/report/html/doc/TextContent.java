@@ -12,31 +12,25 @@ package com.vladium.emma.report.html.doc;
 /**
  * @author Vlad Roubtsov, (C) 2003
  */
-public
-final class TextContent implements IContent
-{
+public final class TextContent implements IContent {
     // public: ................................................................
 
-    public TextContent (final String text)
-    {
+    public TextContent(final String text) {
         m_text = text;
-    }   
+    }
 
-    public void emit (final HTMLWriter out)
-    {
-        if (m_text != null)
-        {
-            out.write (m_text);
+    public void emit(final HTMLWriter out) {
+        if (m_text != null) {
+            out.write(m_text);
         }
     }
-    
+
     // protected: .............................................................
 
     // package: ...............................................................
-    
+
     // private: ...............................................................
-    
-    
+
     private final String m_text;
 
 } // end of class
